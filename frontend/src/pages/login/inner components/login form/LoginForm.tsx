@@ -2,15 +2,21 @@ import "./LoginForm.scss"
 import {useState} from "react";
 import {logIn} from "../../api/Login.ts"
 import * as React from "react";
+import {useNavigate} from "react-router-dom";
 
 function LoginForm() {
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
 
+    const navigate = useNavigate()
+
     const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            await logIn(login, password);
+            if(await logIn(login, password)) {
+                navigate("/")
+                window.location.reload()
+            }
         } catch (err) {
             console.error(err);
         }

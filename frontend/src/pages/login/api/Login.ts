@@ -16,17 +16,10 @@ async function checkCredentials(login: string, password: string): Promise<boolea
     return await response.json()
 }
 
-export async function logIn(login: string, password: string): Promise<void> {
+export async function logIn(login: string, password: string): Promise<boolean> {
     const isValid = await checkCredentials(login, password)
     if (isValid) {
         localStorage.setItem("isLoggedIn", "true")
     }
+    return isValid
 }
-
-export function isLoggedIn(): boolean {
-    return localStorage.getItem("isLoggedIn") === "true"
-}
-
-/*function logout() {
-    localStorage.removeItem("isLoggedIn")
-}*/
