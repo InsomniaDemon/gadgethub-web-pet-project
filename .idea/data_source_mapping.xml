@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="DataSourcePerFileMappings">
-    <file url="file://$PROJECT_DIR$/backend/src/main/resources/db/migration/V2__fill_schema.sql" value="17847256-7e35-4fce-85ec-d71a40cd07e0" />
-  </component>
-</project>
