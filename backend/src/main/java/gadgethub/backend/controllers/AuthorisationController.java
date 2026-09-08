@@ -1,0 +1,19 @@
+package gadgethub.backend.controllers;
+
+import gadgethub.backend.dtos.LoginRequest;
+import gadgethub.backend.service.AuthorisationService;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/auth")
+public class AuthorisationController {
+    private final AuthorisationService authorisationService;
+
+    public AuthorisationController(AuthorisationService authorisationService) { this.authorisationService = authorisationService; }
+
+    @PostMapping("/login")
+    public boolean postCheckCredentials(@RequestBody LoginRequest request) {
+        System.err.println(request.login() + request.password());
+        return authorisationService.checkCredentials(request.login(), request.password());
+    }
+}

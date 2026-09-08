@@ -1,0 +1,12 @@
+.viewport {
+  width: calc(var(--card-width) * 3 + 16px);
+  height: var(--card-height);
+  overflow: hidden;
+
+  .cardsWrapper {
+    display: flex;
+    gap: 8px;
+  }
+
+
+}

@@ -1,0 +1,39 @@
+.header {
+  background-color: white;
+
+  .container {
+    display: flex;
+    gap: 4em;
+  }
+
+  .logo {
+    display: flex;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 30px;
+    gap: 8px;
+    .first {
+      color: var(--light-blue);
+    }
+    .second {
+      color: black;
+    }
+  }
+  .catalogLink {
+    display: flex;
+    margin-left: auto;
+    text-decoration: none;
+    align-items: center;
+    color: var(--light-blue);
+    gap: 8px;
+    font-weight: 500;
+  }
+  .loginLink {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--light-blue);
+    gap: 8px;
+    font-weight: 500;
+  }
+}

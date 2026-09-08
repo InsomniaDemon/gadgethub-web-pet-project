@@ -1,0 +1,32 @@
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 286px;
+  height: 248px;
+  border-radius: 10px;
+  background: white;
+  padding: 48px;
+  gap: 24px;
+
+  p {
+    margin: 4px 0;
+  }
+
+  input {
+    background-color: var(--login-input);
+    border: none;
+    border-radius: 10px;
+    width: 286px;
+    height: 48px;
+  }
+
+  button {
+    background-color: var(--light-blue);
+    border: none;
+    border-radius: 10px;
+    width: 120px;
+    height: 48px;
+    color: white;
+  }
+}

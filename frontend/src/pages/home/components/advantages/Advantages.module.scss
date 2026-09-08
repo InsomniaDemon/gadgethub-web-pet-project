@@ -1,0 +1,28 @@
+.advantages {
+  p {
+    font-size: 30px;
+    font-weight: 500;
+  }
+
+  .wrapper {
+    display: flex;
+    gap: 34px;
+
+    .greyRectangle {
+      background-color: #F5F5F5;
+      width: 280px;
+      padding: 20px 40px 10px 24px;
+      border-radius: 1em;
+    }
+
+    p {
+      font-weight: 500;
+      font-size: 20px;
+    }
+
+    img {
+      width: 60px;
+    }
+  }
+}
+

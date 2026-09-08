@@ -1,0 +1,43 @@
+@font-face {
+    font-family: 'Rubick';
+    src: url(./assets/fonts/rubick/Rubik-VariableFont_wght.ttf);
+}
+
+* {
+    font-family: 'Rubick', sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
+.container {
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+:root {
+    --light-blue: #115EFB;
+    --footer-background: #0C368A;
+    --footer-sub-text: #84ADFF;
+    --footer-main-text: #B7CEFF;
+    --sub-text: #484848;
+    --product-background: #F3F6FA;
+    --login-background: #E5EEFF;
+    --login-input: #E4E7EB;
+
+    --card-width: 248px;
+    --card-height: 396px;
+}
+
