@@ -1,5 +1,6 @@
 package gadgethub.backend.repostories;
 
+import gadgethub.backend.exceptions.NoSuchUserException;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.stereotype.Repository;
 
@@ -17,7 +18,7 @@ public class AuthorisationRepository {
         this.dataSource = dataSource;
     }
 
-    public String getPassword(String login) throws SQLException {
+    public String getPassword(String login) throws NoSuchUserException, SQLException {
         String sql = """
             SELECT password FROM authorisation
             WHERE login = (?)
@@ -29,7 +30,7 @@ public class AuthorisationRepository {
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if  (!resultSet.next()) {
-                    throw new SQLException("No such authorisation data");
+                    throw new NoSuchUserException("No such authorisation data");
                 }
                 return resultSet.getString("password");
             }

@@ -1,3 +1,5 @@
+import {ApiError} from "../types.ts";
+
 const BASE_URL = 'http://localhost:8080/api/auth';
 
 export async function checkCredentials(login: string, password: string): Promise<boolean> {
@@ -10,7 +12,8 @@ export async function checkCredentials(login: string, password: string): Promise
     })
 
     if (!response.ok) {
-        throw new Error(`Invalid credentials`)
+        const data = await response.json()
+        throw new ApiError(response.status, data.message)
     }
 
     return await response.json()

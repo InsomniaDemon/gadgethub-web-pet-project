@@ -1,4 +1,5 @@
 form {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,16 +10,28 @@ form {
   padding: 48px;
   gap: 24px;
 
-  p {
-    margin: 4px 0;
-  }
+  .wrapper {
+    position: relative;
 
-  input {
-    background-color: var(--login-input);
-    border: none;
-    border-radius: 10px;
-    width: 286px;
-    height: 48px;
+    p {
+      margin: 4px 0;
+    }
+
+    span {
+      position: absolute;
+      top: 14px;
+      right: -14px;
+      font-size: 24px;
+      color: var(--pink-star);
+    }
+
+    input {
+      background-color: var(--login-input);
+      border: none;
+      border-radius: 10px;
+      width: 286px;
+      height: 48px;
+    }
   }
 
   button {
@@ -28,5 +41,11 @@ form {
     width: 120px;
     height: 48px;
     color: white;
+  }
+
+  .errorText {
+    position: absolute;
+    bottom: 0;
+    color: red;
   }
 }
