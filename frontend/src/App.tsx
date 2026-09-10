@@ -5,10 +5,11 @@ import HomePage from "./pages/home/HomePage.tsx"
 import LoginPage from "./pages/login/LoginPage.tsx"
 import CatalogPage from "./pages/ catalog/CatalogPage.tsx"
 import CartPage from "./pages/cart/CartPage.tsx"
+import {AuthProvider} from "./shared/contexts/AuthContext.tsx";
 
 function App() {
   return (
-      <>
+      <AuthProvider>
           <BrowserRouter>
               <Header/>
                 <Routes>
@@ -20,7 +21,7 @@ function App() {
                 </Routes>
               <Footer/>
           </BrowserRouter>
-      </>
+      </AuthProvider>
   )
 }
 

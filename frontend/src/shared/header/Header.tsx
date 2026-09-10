@@ -1,16 +1,15 @@
 import {Link} from "react-router-dom";
 
 import styles from "./Header.module.scss"
-import {getIsLoggedIn, logout} from "./api/Header.ts";
-import { useState} from "react";
+import {useAuth} from "../contexts/AuthContext.tsx";
 
 
 function Header() {
-    const [isLoggedIn, setIsLoggedIn] = useState(getIsLoggedIn());
+    const { isLoggedIn, setIsLoggedIn, logout } = useAuth()
 
     const handleLogout = () => {
         logout();
-        setIsLoggedIn(getIsLoggedIn);
+        setIsLoggedIn(false);
     }
 
     return (

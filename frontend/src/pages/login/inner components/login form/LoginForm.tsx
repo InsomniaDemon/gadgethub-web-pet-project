@@ -1,10 +1,13 @@
 import "./LoginForm.scss"
 import {useState} from "react";
-import {logIn} from "../../api/Login.ts"
 import * as React from "react";
 import {useNavigate} from "react-router-dom";
+import {checkCredentials} from "../../api/Login.ts";
+import {useAuth} from "../../../../shared/contexts/AuthContext.tsx";
 
 function LoginForm() {
+    const { setIsLoggedIn, logIn } = useAuth()
+
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
 
@@ -13,9 +16,10 @@ function LoginForm() {
     const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            if(await logIn(login, password)) {
+            if(await checkCredentials(login, password)) {
+                logIn()
+                setIsLoggedIn(true)
                 navigate("/")
-                window.location.reload()
             }
         } catch (err) {
             console.error(err);
