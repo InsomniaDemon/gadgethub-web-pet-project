@@ -13,7 +13,6 @@ public class AuthorisationController {
 
     @PostMapping("/login")
     public boolean postCheckCredentials(@RequestBody LoginRequest request) {
-        System.err.println(request.login() + request.password());
         return authorisationService.checkCredentials(request.login(), request.password());
     }
 }

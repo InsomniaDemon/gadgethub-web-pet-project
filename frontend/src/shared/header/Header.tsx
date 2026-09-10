@@ -8,8 +8,8 @@ function Header() {
     const { isLoggedIn, setIsLoggedIn, logout } = useAuth()
 
     const handleLogout = () => {
-        logout();
-        setIsLoggedIn(false);
+        logout()
+        setIsLoggedIn(false)
     }
 
     return (

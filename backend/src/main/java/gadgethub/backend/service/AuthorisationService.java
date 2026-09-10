@@ -1,5 +1,6 @@
 package gadgethub.backend.service;
 
+import gadgethub.backend.exceptions.InvalidCredentials;
 import gadgethub.backend.repostories.AuthorisationRepository;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +14,11 @@ public class AuthorisationService {
 
     public boolean checkCredentials (String login, String password) {
         try {
-            return password.equals(authorisationRepository.getPassword(login));
+            if (!password.equals(authorisationRepository.getPassword(login))) {
+                throw  new InvalidCredentials("Invalid login or password");
+            }
+            return true;
         } catch (SQLException e) {
-            System.out.println("YA GAY");
             throw new RuntimeException(e);
         }
     }
