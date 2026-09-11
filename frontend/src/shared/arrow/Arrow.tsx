@@ -1,13 +1,12 @@
 import styles from "./Arrow.module.scss"
 
-function Arrow({isForward, isDisabled, onClick}: {isForward: boolean; isDisabled: boolean; onClick: () => void}) {
+function Arrow({isForward, onClick}: {isForward: boolean; onClick: () => void}) {
     const d = isForward ? "M4.5 4.5L28.5 26.5L4.5 48.5" : "M28.5 4.5L4.5 26.5L28.5 48.5";
 
     return (
         <>
             <button
-                className={`${styles.arrow} ${isDisabled ? styles.disabled : ""}`}
-                disabled={isDisabled}
+                className={styles.arrow}
                 onClick= {() => onClick()}
             >
                 <svg width="33" height="53" viewBox="0 0 33 53" fill="none">

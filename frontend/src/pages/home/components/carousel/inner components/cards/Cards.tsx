@@ -14,7 +14,7 @@ function Cards({toShow, emblaRef}:
         <div className={styles.viewport} ref={emblaRef}>
             <div className={styles.cardsWrapper}>
                 {toShow.map(product =>
-                    <GoodsCard key={product.id} product={product}/>
+                    <GoodsCard key={product.id} product={product} disableHover={false}/>
                 )}
             </div>
         </div>

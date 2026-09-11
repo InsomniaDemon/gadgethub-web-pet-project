@@ -37,8 +37,10 @@ main {
     --login-background: #E5EEFF;
     --login-input: #E4E7EB;
     --pink-star: #FF60C3;
+    --pale-blue: #84adff;
+    --arrow-hover-bg: #f3f6fa;
 
     --card-width: 248px;
-    --card-height: 396px;
+    --card-height: 364px;
 }
 

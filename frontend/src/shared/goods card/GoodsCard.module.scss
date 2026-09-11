@@ -2,8 +2,9 @@
     width: 220px;
     height: 350px;
     border-radius: 1em;
+    transition: 0.3s ease;
 
-    padding: 14px 14px 0 14px;
+    padding: 14px;
     .productImgContainer {
         position: relative;
         border-radius: 1em;
@@ -65,5 +66,18 @@
             width: 8%;
             height: 8%;
         }
+    }
+
+    &:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.noHover {
+
+    padding: 14px 14px 0 14px;
+    &:hover {
+        box-shadow: none;
+        transform: none;
     }
 }

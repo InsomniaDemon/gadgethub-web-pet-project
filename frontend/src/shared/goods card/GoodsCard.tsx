@@ -1,12 +1,13 @@
 import type {Product} from "../../dtos/Product.ts"
 import styles from "./GoodsCard.module.scss"
+import clsx from "clsx";
 
-function GoodsCard({product}: {product: Product}) {
+function GoodsCard({product, disableHover = false}: {product: Product, disableHover: boolean}) {
     const hasNewLabel = product.labels.includes("new")
     const hasBestsellerLabel = product.labels.includes("bestseller")
 
     return (
-        <div className={styles.card}>
+        <div className={clsx(styles.card, disableHover && styles.noHover)}>
             <div className={styles.productImgContainer}>
                 <div className={styles.labels}>
                     <div className={styles.flex}>

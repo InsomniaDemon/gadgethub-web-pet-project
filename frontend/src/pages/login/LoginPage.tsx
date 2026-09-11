@@ -1,5 +1,5 @@
 import styles from "./LoginPage.module.scss"
-import LoginForm from "./inner components/login form/LoginForm.tsx";
+import LoginForm from "./components/login form/LoginForm.tsx";
 import {useAuth} from "../../shared/contexts/AuthContext.tsx";
 import {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
