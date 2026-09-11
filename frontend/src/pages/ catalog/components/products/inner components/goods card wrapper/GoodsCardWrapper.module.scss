@@ -2,6 +2,9 @@
   padding-bottom: 14px;
   border-radius: 20px;
   transition: 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 
   button {
     margin-left: 14px;
@@ -12,12 +15,25 @@
     background-color: var(--light-blue);
     border: none;
     border-radius: 10px;
-    width: 180px;
+    width: 160px;
     height: 48px;
     color: white;
+    transition: 0.3s ease;
 
     img {
       width: 20px;
+    }
+
+    &:hover {
+      background-color: var(--blue-button-hover);
+    }
+
+    &:focus {
+      outline-color: var(--focus-blue);
+    }
+
+    &:disabled {
+      background-color: var(--blue-button-disabled);
     }
   }
 

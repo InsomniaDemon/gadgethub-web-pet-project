@@ -15,16 +15,18 @@ function CatalogPage() {
         if (!isLoggedIn) {
             navigate("/login")
         }
-    },[isLoggedIn])
+    },[isLoggedIn, navigate])
 
     return (
         <div className="container">
             <div className={styles.catalog}>
                 <h1>Каталог товаров</h1>
-                Новые
-                Популярные
-                Подешевле
-                Подороже
+                <div className={styles.buttons}>
+                    <button>Новые</button>
+                    <button>Популярные</button>
+                    <button>Подешевле</button>
+                    <button>Подороже</button>
+                </div>
                 <div className={styles.wrapper}>
                     <Products/>
                     <Sidebar/>

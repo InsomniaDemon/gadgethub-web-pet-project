@@ -21,15 +21,15 @@ function Header() {
                         <img src="src/assets/images/icons/catalog.svg" alt="Catalog icon"/>
                         <p>Каталог</p>
                     </Link>
-                    {isLoggedIn && <Link to="/cart" className={styles.loginLink}>
+                    {isLoggedIn && <Link to="/cart" className={styles.link}>
                         <img src="src/assets/images/icons/cart.svg" alt="Cart icon"/>
                         <p>Корзина</p>
                     </Link>}
-                    {!isLoggedIn && <Link to="/login" className={styles.loginLink}>
+                    {!isLoggedIn && <Link to="/login" className={styles.link}>
                         <img src="src/assets/images/icons/profile.svg" alt="Login icon"/>
                         <p>Войти</p>
                     </Link>}
-                    {isLoggedIn && <button className={styles.loginLink} onClick={() => { handleLogout() }}>
+                    {isLoggedIn && <button className={styles.link} onClick={() => { handleLogout() }}>
                         <img src="src/assets/images/icons/profile.svg" alt="Loout icon"/>
                         <p>Выйти</p>
                     </button>}

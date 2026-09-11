@@ -36,9 +36,13 @@ main {
     --product-background: #F3F6FA;
     --login-background: #E5EEFF;
     --login-input: #E4E7EB;
+    --login-active-bg: #f3f6fa;
     --pink-star: #FF60C3;
     --pale-blue: #84adff;
     --arrow-hover-bg: #f3f6fa;
+    --focus-blue:  #84adff;
+    --blue-button-hover: #0c368a;
+    --blue-button-disabled: #84adff;
 
     --card-width: 248px;
     --card-height: 364px;

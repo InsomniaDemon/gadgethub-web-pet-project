@@ -9,11 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Repository
 public class ProductsRepository {
@@ -35,6 +31,29 @@ public class ProductsRepository {
         }
     }
 
+    public List<Product> getAllProducts(Set<String> labels, boolean isDesc, boolean isAsc) throws SQLException {
+        return null;
+    }
+
+    private String getSqlForGetAllProducts(Set<String> labels, boolean isDesc, boolean isAsc) {
+        StringBuilder sql = new StringBuilder("SELECT * FROM products");
+        if (!labels.isEmpty()) {
+            if (labels.size() == 2) {
+                sql.append(" WHERE is_bestseller = true, is_new = true");
+            } else if(labels.contains("bestseller")) {
+                sql.append(" WHERE is_bestseller = true");
+            } else if(labels.contains("new")) {
+                sql.append(" WHERE is_new = true");
+            }
+        }
+        if (isDesc) {
+            sql.append(" ORDER BY price DESC");
+        } else if (isAsc) {
+            sql.append(" ORDER BY price ASC");
+        }
+        return sql.toString();
+    }
+
     private Product mapRowToProductWithLabel(ResultSet resultSet, String label) throws SQLException {
         return new Product(
                 resultSet.getLong("id"),
@@ -52,6 +71,36 @@ public class ProductsRepository {
 
         while (resultSet.next()) {
             productsList.add(mapRowToProductWithLabel(resultSet, label));
+        }
+
+        return productsList;
+    }
+
+    private Product mapRowToProduct(ResultSet resultSet) throws SQLException {
+        Set<String> labels = new HashSet<>();
+        if (resultSet.getBoolean("is_new")) {
+            labels.add("new");
+        }
+        if (resultSet.getBoolean("is_bestseller")) {
+            labels.add("bestseller");
+        }
+
+        return new Product(
+                resultSet.getLong("id"),
+                resultSet.getString("title"),
+                resultSet.getLong("price"),
+                resultSet.getString("text"),
+                resultSet.getString("image"),
+                resultSet.getFloat("stars"),
+                labels
+        );
+    }
+
+    private List<Product> mapResultSetToProductsList(ResultSet resultSet) throws SQLException {
+        List<Product> productsList = new ArrayList<>();
+
+        while (resultSet.next()) {
+            productsList.add(mapRowToProduct(resultSet));
         }
 
         return productsList;

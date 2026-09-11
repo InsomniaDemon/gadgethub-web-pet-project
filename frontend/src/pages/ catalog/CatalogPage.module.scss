@@ -1,7 +1,29 @@
 .catalog {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+
   h1 {
     font-weight: 500;
     font-size: 40px;
+  }
+
+  .buttons {
+    button {
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 16px;
+      border: none;
+      background-color: white;
+      color: var(--light-blue);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-style: dashed;
+
+      &:hover {
+        background-color: var(--arrow-hover-bg);
+      }
+    }
   }
 
   .wrapper {
