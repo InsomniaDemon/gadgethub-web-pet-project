@@ -31,10 +31,19 @@ public class ProductsRepository {
         }
     }
 
-    public List<Product> getAllProducts(Set<String> labels, boolean isDesc, boolean isAsc) throws SQLException {
-        return null;
+    public List<Product> getAllProducts() throws SQLException {
+        String sql = "SELECT * FROM products";
+
+        Connection connection = DataSourceUtils.getConnection(dataSource);
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+            return mapResultSetToProductsList(resultSet);
+        } finally {
+            DataSourceUtils.releaseConnection(connection, dataSource);
+        }
     }
 
+    @Deprecated
     private String getSqlForGetAllProducts(Set<String> labels, boolean isDesc, boolean isAsc) {
         StringBuilder sql = new StringBuilder("SELECT * FROM products");
         if (!labels.isEmpty()) {
@@ -62,7 +71,9 @@ public class ProductsRepository {
                 resultSet.getString("text"),
                 resultSet.getString("image"),
                 resultSet.getFloat("stars"),
-                Set.of(label.substring(3))
+                Set.of(label.substring(3)),
+                resultSet.getString("type"),
+                resultSet.getString("colour")
         );
     }
 
@@ -92,7 +103,9 @@ public class ProductsRepository {
                 resultSet.getString("text"),
                 resultSet.getString("image"),
                 resultSet.getFloat("stars"),
-                labels
+                labels,
+                resultSet.getString("type"),
+                resultSet.getString("colour")
         );
     }
 

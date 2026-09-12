@@ -6,4 +6,6 @@ export type Product = {
     image: string;
     labels: string[];
     stars: number;
+    type: string;
+    colour: string;
 }

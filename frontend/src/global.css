@@ -43,6 +43,7 @@ main {
     --focus-blue:  #84adff;
     --blue-button-hover: #0c368a;
     --blue-button-disabled: #84adff;
+    --selected-sort-bg: #84adff;
 
     --card-width: 248px;
     --card-height: 364px;

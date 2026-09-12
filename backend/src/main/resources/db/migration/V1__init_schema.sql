@@ -12,5 +12,7 @@ CREATE TABLE products (
     image VARCHAR(200) NOT NULL,
     stars FLOAT NOT NULL CHECK (stars > 0),
     is_new BOOLEAN NOT NULL,
-    is_bestseller BOOLEAN NOT NULL
+    is_bestseller BOOLEAN NOT NULL,
+    type VARCHAR(200) NOT NULL,
+    colour VARCHAR(200) NOT NULL
 );

@@ -17,4 +17,9 @@ public class ProductsController {
     public List<Product> getAllProductsWithLabel(@PathVariable String label) {
         return productsService.getAllProductsWithLabel(label);
     }
+
+    @GetMapping("")
+    public List<Product> getAllProducts() {
+        return productsService.getAllProducts();
+    }
 }

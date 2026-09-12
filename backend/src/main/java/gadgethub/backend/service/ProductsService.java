@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ProductsService {
@@ -16,6 +17,14 @@ public class ProductsService {
     public List<Product> getAllProductsWithLabel(String label) {
         try {
             return productsRepository.getAllProductsWithLabel(label);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Product> getAllProducts() {
+        try {
+            return productsRepository.getAllProducts();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

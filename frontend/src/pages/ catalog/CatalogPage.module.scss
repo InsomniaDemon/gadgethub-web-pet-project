@@ -9,6 +9,9 @@
   }
 
   .buttons {
+    display: flex;
+    gap: 8px;
+
     button {
       padding: 4px 8px;
       border-radius: 6px;
@@ -19,9 +22,20 @@
       text-decoration: underline;
       text-underline-offset: 4px;
       text-decoration-style: dashed;
+      transition: 0.3s ease;
 
       &:hover {
         background-color: var(--arrow-hover-bg);
+      }
+    }
+
+    .selected {
+      color: white;
+      text-decoration: none;
+      background-color: var(--selected-sort-bg);
+
+      &:hover {
+        background-color: var(--selected-sort-bg);
       }
     }
   }
