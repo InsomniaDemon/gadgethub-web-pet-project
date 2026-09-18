@@ -12,8 +12,10 @@
   "dependencies": {
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.6.0",
+    "nouislider": "^15.8.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
+    "react-range": "^1.10.0",
     "react-router-dom": "^7.18.3"
   },
   "devDependencies": {

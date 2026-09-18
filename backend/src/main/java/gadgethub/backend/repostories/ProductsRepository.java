@@ -43,6 +43,22 @@ public class ProductsRepository {
         }
     }
 
+    public Long getMaxPrice() throws SQLException {
+        String sql = """
+                SELECT price FROM products
+                ORDER BY price DESC
+                """;
+        Connection connection = DataSourceUtils.getConnection(dataSource);
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+            resultSet.next();
+            return resultSet.getLong("price");
+        } finally {
+            DataSourceUtils.releaseConnection(connection, dataSource);
+        }
+
+    }
+
     @Deprecated
     private String getSqlForGetAllProducts(Set<String> labels, boolean isDesc, boolean isAsc) {
         StringBuilder sql = new StringBuilder("SELECT * FROM products");

@@ -1,4 +1,4 @@
-import "./LoginForm.scss"
+import styles from "./LoginForm.module.scss"
 import {useState} from "react"
 import * as React from "react"
 import {useNavigate} from "react-router-dom"
@@ -37,30 +37,32 @@ function LoginForm() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div className="wrapper">
-                <p>Логин</p>
-                <input
-                    type="text"
-                    value={login}
-                    onChange={(e) => setLogin(e.target.value)}
-                />
-                <span>*</span>
-            </div>
-            <div className="wrapper">
-                <p>Пароль</p>
-                <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <span>*</span>
-            </div>
+        <div className={styles.loginForm}>
+            <form onSubmit={handleSubmit}>
+                <div className={styles.wrapper}>
+                    <p>Логин</p>
+                    <input
+                        type="text"
+                        value={login}
+                        onChange={(e) => setLogin(e.target.value)}
+                    />
+                    <span>*</span>
+                </div>
+                <div className={styles.wrapper}>
+                    <p>Пароль</p>
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <span>*</span>
+                </div>
 
-            <button type="submit">Войти</button>
+                <button type="submit">Войти</button>
 
-            {error && <p className="errorText">{error}</p>}
-        </form>
+                {error && <p className={styles.errorText}>{error}</p>}
+            </form>
+        </div>
     )
 }
 

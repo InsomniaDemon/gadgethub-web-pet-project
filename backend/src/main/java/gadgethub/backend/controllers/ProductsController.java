@@ -22,4 +22,9 @@ public class ProductsController {
     public List<Product> getAllProducts() {
         return productsService.getAllProducts();
     }
+
+    @GetMapping("/max-price")
+    public Long getMaxPrice() {
+        return productsService.getMaxPrice();
+    }
 }

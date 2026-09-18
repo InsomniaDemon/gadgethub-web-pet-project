@@ -4,13 +4,21 @@ import {useEffect, useState} from "react";
 import styles from "./CatalogPage.module.scss"
 import Products from "./components/products/Products.tsx";
 import Sidebar from "./components/sidebar/Sidebar.tsx";
+import type {Filters} from "../../dtos/Filters.ts";
+import {getMaxPrice} from "./api/Catalog.ts";
 
 
 function CatalogPage() {
-    const { isLoggedIn } = useAuth()
+    const {isLoggedIn} = useAuth()
     const [sortType, setSortType] = useState(1)
-    const [colours, setColours] = useState([])
-    const [types, setTypes] = useState([])
+    const [maxPrice, setMaxPrice] = useState<number>(1000000)
+
+    const [filters, setFilters] = useState<Filters>({
+        colours: [],
+        types: [],
+        lowest_price: 0,
+        highest_price: 1000000
+    })
 
     const navigate = useNavigate()
 
@@ -19,6 +27,12 @@ function CatalogPage() {
             navigate("/login")
         }
     },[isLoggedIn, navigate])
+
+    useEffect(() => {
+        getMaxPrice()
+            .then(setMaxPrice)
+            .catch((err) => console.error(err));
+    }, [])
 
     return (
         <div className="container">
@@ -31,8 +45,8 @@ function CatalogPage() {
                     <button onClick={() => setSortType(4)} className={sortType === 4 ? styles.selected : undefined}>Подороже</button>
                 </div>
                 <div className={styles.wrapper}>
-                    <Products sortType={sortType}/>
-                    <Sidebar/>
+                    <Products sortType={sortType} filters={filters}/>
+                    <Sidebar onApply={setFilters} minPrice={0} maxPrice={maxPrice}/>
                 </div>
             </div>
         </div>

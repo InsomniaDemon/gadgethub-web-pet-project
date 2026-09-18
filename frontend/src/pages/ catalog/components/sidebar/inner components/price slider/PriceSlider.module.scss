@@ -1,0 +1,28 @@
+.slider {
+  :global(.noUi-target) {
+    border: none;
+    box-shadow: none;
+    background: #e5e7eb;
+    height: 4px;
+  }
+
+  :global(.noUi-connect) {
+    background: #16c47f;
+  }
+
+  :global(.noUi-handle) {
+    width: 20px !important;
+    height: 20px !important;
+    border-radius: 50%;
+    background: #2563eb;
+    border: none;
+    box-shadow: none;
+    right: -10px !important;
+    top: -8px !important;
+  }
+
+  :global(.noUi-handle::before),
+  :global(.noUi-handle::after) {
+    display: none;
+  }
+}

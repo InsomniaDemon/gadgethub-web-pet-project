@@ -29,4 +29,12 @@ public class ProductsService {
             throw new RuntimeException(e);
         }
     }
+
+    public Long getMaxPrice() {
+        try {
+            return productsRepository.getMaxPrice();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
