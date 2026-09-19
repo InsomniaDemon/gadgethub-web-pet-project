@@ -4,9 +4,22 @@
   gap: 8px;
 
   label {
+    width: fit-content;
+    padding: 4px 8px;
+    border-radius: 6px;
     display: flex;
     align-items: center;
     gap: 8px;
+    transition: 0.3s ease;
+
+    &:hover {
+      margin-left: 8px;
+      background-color: var(--arrow-hover-bg);
+    }
+
+    &:focus {
+      outline: black 10px;
+    }
   }
 
   input[type="checkbox"] {

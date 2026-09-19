@@ -5,8 +5,8 @@ function CheckBoxes({toShow, name}: {toShow: CheckBoxData[], name: string}) {
     return (
         <div className={styles.checkBoxes}>
             {toShow.map((item) => (
-                <label key={item.engString}>
-                    <input type="checkbox" name={name} value={item.engString} />
+                <label tabIndex={0} key={item.engString}>
+                    <input type="checkbox" tabIndex={1} name={name} value={item.engString} />
                     {item.ruString}
                 </label>
             ))}
