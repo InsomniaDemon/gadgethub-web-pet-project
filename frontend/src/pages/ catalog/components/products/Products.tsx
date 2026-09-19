@@ -1,7 +1,7 @@
 import type {Product} from "../../../../dtos/Product.ts"
 import GoodsCardWrapper from "./inner components/goods card wrapper/GoodsCardWrapper.tsx"
 import styles from "./Products.module.scss"
-import {useEffect, useMemo, useState} from "react"
+import {type Dispatch, type SetStateAction, useEffect, useMemo, useState} from "react"
 import PagesButtons from "./inner components/PagesButtons/PagesButtons.tsx"
 import {getPages} from "./utils/Pagination.ts"
 import Arrow from "../../../../shared/arrow/Arrow.tsx";
@@ -11,7 +11,7 @@ import type {Filters} from "../../../../dtos/Filters.ts";
 
 const CARDS_PER_PAGE = 9
 
-function Products({sortType, filters}: {sortType: number, filters: Filters}) {
+function Products({sortType, filters, onClick}: {sortType: number, filters: Filters, onClick: Dispatch<SetStateAction<Product | undefined>>}) {
     const [products, setProducts] = useState<Product[]>([])
     const [filteredProducts, setFilteredProducts] = useState<Product[]>(products)
     const [currentPage, setCurrentPage] = useState(1)
@@ -59,7 +59,7 @@ function Products({sortType, filters}: {sortType: number, filters: Filters}) {
         <div className={styles.wrapper}>
             <div className={styles.products}>
                 {currentProducts.map(product =>
-                    <GoodsCardWrapper key={product.id} product={product}/>
+                    <GoodsCardWrapper key={product.id} product={product} onClick={onClick}/>
                 )}
             </div>
             <div className={styles.pageButtons}>

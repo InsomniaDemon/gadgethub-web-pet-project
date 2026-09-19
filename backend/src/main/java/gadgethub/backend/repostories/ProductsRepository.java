@@ -3,6 +3,8 @@ package gadgethub.backend.repostories;
 import gadgethub.backend.dtos.Product;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.stereotype.Repository;
+import tools.jackson.core.type.TypeReference;
+import tools.jackson.databind.ObjectMapper;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -14,9 +16,11 @@ import java.util.*;
 @Repository
 public class ProductsRepository {
     private final DataSource dataSource;
+    private final ObjectMapper mapper;
 
-    public ProductsRepository(DataSource dataSource) {
+    public ProductsRepository(DataSource dataSource, ObjectMapper mapper) {
         this.dataSource = dataSource;
+        this.mapper = mapper;
     }
 
     public List<Product> getAllProductsWithLabel(String label) throws SQLException {
@@ -80,11 +84,14 @@ public class ProductsRepository {
     }
 
     private Product mapRowToProductWithLabel(ResultSet resultSet, String label) throws SQLException {
+        String json = resultSet.getString("specs");
+
         return new Product(
                 resultSet.getLong("id"),
                 resultSet.getString("title"),
                 resultSet.getLong("price"),
                 resultSet.getString("text"),
+                mapper.readValue(json, new TypeReference<>() {}),
                 resultSet.getString("image"),
                 resultSet.getFloat("stars"),
                 Set.of(label.substring(3)),
@@ -112,11 +119,14 @@ public class ProductsRepository {
             labels.add("bestseller");
         }
 
+        String json = resultSet.getString("specs");
+
         return new Product(
                 resultSet.getLong("id"),
                 resultSet.getString("title"),
                 resultSet.getLong("price"),
                 resultSet.getString("text"),
+                mapper.readValue(json, new TypeReference<>() {}),
                 resultSet.getString("image"),
                 resultSet.getFloat("stars"),
                 labels,

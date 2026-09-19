@@ -9,6 +9,7 @@ CREATE TABLE products (
     title VARCHAR(200) NOT NULL,
     price BIGINT NOT NULL CHECK (price > 0),
     text VARCHAR(200) NOT NULL,
+    specs JSON NOT NULL,
     image VARCHAR(200) NOT NULL,
     stars FLOAT NOT NULL CHECK (stars > 0),
     is_new BOOLEAN NOT NULL,

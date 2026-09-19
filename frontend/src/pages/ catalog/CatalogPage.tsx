@@ -14,17 +14,22 @@ function CatalogPage() {
     const {isLoggedIn} = useAuth()
     const [sortType, setSortType] = useState(1)
     const [maxPrice, setMaxPrice] = useState<number>(1000000)
-    const [popupProduct, setPopupProduct] = useState<Product>({
+    const [popupProduct, setPopupProduct] = useState<Product | undefined>()
+
+    /*
+    {
         id: 137,
-        title: "putin lox",
+        title: "Смартфон Samsung Galaxy Z Flip5 8/256GB фиолетовый",
         price: 1234,
         text: "putin lox",
+        specs: {"Гарантия": "1 год", "Экран": "3.4\"/720×748 Пикс", "Процессор": "Qualcomm Snapdragon 8 Gen 2 1×3.36 ГГц + 2×2.8 ГГц + 2×2.8 ГГц + 3×2.0 ГГц"},
         image: "./images/goods/image_1.png",
         labels: ["new"],
         stars: 3.2,
         type: "phone",
         colour: "white",
-    })
+    }
+     */
 
     const [filters, setFilters] = useState<Filters>({
         colours: [],
@@ -49,7 +54,7 @@ function CatalogPage() {
 
     return (
         <>
-            <Popup product={popupProduct}/>
+            {popupProduct && <Popup product={popupProduct} onClick={setPopupProduct}/>}
             <div className="container">
                 <div className={styles.catalog}>
                     <h1>Каталог товаров</h1>
@@ -60,7 +65,7 @@ function CatalogPage() {
                         <button onClick={() => setSortType(4)} className={sortType === 4 ? styles.selected : undefined}>Подороже</button>
                     </div>
                     <div className={styles.wrapper}>
-                        <Products sortType={sortType} filters={filters}/>
+                        <Products sortType={sortType} filters={filters} onClick={setPopupProduct}/>
                         <Sidebar onApply={setFilters} minPrice={0} maxPrice={maxPrice}/>
                     </div>
                 </div>

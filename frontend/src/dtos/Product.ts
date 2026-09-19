@@ -3,6 +3,7 @@ export type Product = {
     title: string;
     price: number;
     text: string;
+    specs: Record<string, string>;
     image: string;
     labels: string[];
     stars: number;

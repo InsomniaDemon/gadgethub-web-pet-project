@@ -42,6 +42,19 @@
           mix-blend-mode: multiply;
         }
       }
+
+      .content {
+        width: 604px;
+        padding-left: 2em;
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+
+        p {
+          font-weight: 500;
+          font-size: 32px;
+        }
+      }
     }
 
     button {
