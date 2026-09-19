@@ -10,15 +10,17 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    transition: 0.3s ease;
+    transition: background-color 0.3s ease,
+                margin 0.3s ease;
 
     &:hover {
       margin-left: 8px;
       background-color: var(--arrow-hover-bg);
     }
 
-    &:focus {
-      outline: black 10px;
+    &:focus-within {
+      outline: 2px solid var(--focus-blue);
+      background-color: var(--arrow-hover-bg);
     }
   }
 
@@ -37,5 +39,9 @@
     background-repeat: no-repeat;
     background-size: 12px;
     background-image: url("/src/assets/images/icons/checkmark.png");
+  }
+
+  input[type="checkbox"]:focus {
+    outline: none;
   }
 }

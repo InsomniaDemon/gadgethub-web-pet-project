@@ -48,7 +48,10 @@ function Sidebar({onApply, minPrice, maxPrice}: {onApply: Dispatch<SetStateActio
                                 value={price.min}
                                 onChange={(e) => {
                                     const value = Number(e.target.value);
-                                    setPrice((prev) => ({ ...prev, min: value }));
+                                    setPrice((prev) => ({
+                                        ...prev,
+                                        min: Math.min(value, prev.max)
+                                    }));
                                 }}
                             />
                         </div>
@@ -60,7 +63,10 @@ function Sidebar({onApply, minPrice, maxPrice}: {onApply: Dispatch<SetStateActio
                                 value={price.max}
                                 onChange={(e) => {
                                     const value = Number(e.target.value);
-                                    setPrice((prev) => ({ ...prev, max: value }));
+                                    setPrice((prev) => ({
+                                        ...prev,
+                                        max: Math.max(value, prev.min)
+                                    }));
                                 }}
                             />
                         </div>
