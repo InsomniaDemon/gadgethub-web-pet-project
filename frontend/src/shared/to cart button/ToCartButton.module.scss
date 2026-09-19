@@ -1,0 +1,29 @@
+.toCartButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  background-color: var(--light-blue);
+  border: none;
+  border-radius: 10px;
+  width: 160px;
+  height: 48px;
+  color: white;
+  transition: 0.3s ease;
+
+  img {
+    width: 20px;
+  }
+
+  &:hover {
+    background-color: var(--blue-button-hover);
+  }
+
+  &:focus {
+    outline-color: var(--focus-blue);
+  }
+
+  &:disabled {
+    background-color: var(--blue-button-disabled);
+  }
+}

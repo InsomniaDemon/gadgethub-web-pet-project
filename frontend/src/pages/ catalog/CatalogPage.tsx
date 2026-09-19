@@ -6,12 +6,25 @@ import Products from "./components/products/Products.tsx";
 import Sidebar from "./components/sidebar/Sidebar.tsx";
 import type {Filters} from "../../dtos/Filters.ts";
 import {getMaxPrice} from "./api/Catalog.ts";
+import Popup from "./components/popup/Popup.tsx";
+import type {Product} from "../../dtos/Product.ts";
 
 
 function CatalogPage() {
     const {isLoggedIn} = useAuth()
     const [sortType, setSortType] = useState(1)
     const [maxPrice, setMaxPrice] = useState<number>(1000000)
+    const [popupProduct, setPopupProduct] = useState<Product>({
+        id: 137,
+        title: "putin lox",
+        price: 1234,
+        text: "putin lox",
+        image: "./images/goods/image_1.png",
+        labels: ["new"],
+        stars: 3.2,
+        type: "phone",
+        colour: "white",
+    })
 
     const [filters, setFilters] = useState<Filters>({
         colours: [],
@@ -35,21 +48,24 @@ function CatalogPage() {
     }, [])
 
     return (
-        <div className="container">
-            <div className={styles.catalog}>
-                <h1>Каталог товаров</h1>
-                <div className={styles.buttons}>
-                    <button onClick={() => setSortType(1)} className={sortType === 1 ? styles.selected : undefined}>Новые</button>
-                    <button onClick={() => setSortType(2)} className={sortType === 2 ? styles.selected : undefined}>Популярные</button>
-                    <button onClick={() => setSortType(3)} className={sortType === 3 ? styles.selected : undefined}>Подешевле</button>
-                    <button onClick={() => setSortType(4)} className={sortType === 4 ? styles.selected : undefined}>Подороже</button>
-                </div>
-                <div className={styles.wrapper}>
-                    <Products sortType={sortType} filters={filters}/>
-                    <Sidebar onApply={setFilters} minPrice={0} maxPrice={maxPrice}/>
+        <>
+            <Popup product={popupProduct}/>
+            <div className="container">
+                <div className={styles.catalog}>
+                    <h1>Каталог товаров</h1>
+                    <div className={styles.buttons}>
+                        <button onClick={() => setSortType(1)} className={sortType === 1 ? styles.selected : undefined}>Новые</button>
+                        <button onClick={() => setSortType(2)} className={sortType === 2 ? styles.selected : undefined}>Популярные</button>
+                        <button onClick={() => setSortType(3)} className={sortType === 3 ? styles.selected : undefined}>Подешевле</button>
+                        <button onClick={() => setSortType(4)} className={sortType === 4 ? styles.selected : undefined}>Подороже</button>
+                    </div>
+                    <div className={styles.wrapper}>
+                        <Products sortType={sortType} filters={filters}/>
+                        <Sidebar onApply={setFilters} minPrice={0} maxPrice={maxPrice}/>
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 
