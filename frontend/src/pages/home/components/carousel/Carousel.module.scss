@@ -2,5 +2,5 @@
   position: relative;
   display: flex;
   align-items: center;
-  gap: 8px;
+  height: calc(var(--card-height) + 20px);
 }

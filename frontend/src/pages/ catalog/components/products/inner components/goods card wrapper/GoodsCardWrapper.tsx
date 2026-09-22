@@ -6,11 +6,10 @@ import type {Dispatch, SetStateAction} from "react";
 
 
 function GoodsCardWrapper({product, onClick}: {product: Product, onClick: Dispatch<SetStateAction<Product | undefined>>}) {
-
     return (
         <div className={styles.card} onClick={() => onClick(product)}>
             <GoodsCard product={product} disableHover={true}/>
-            <ToCartButton/>
+            <ToCartButton product={product}/>
         </div>
     )
 }

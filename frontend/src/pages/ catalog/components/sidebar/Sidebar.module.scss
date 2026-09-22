@@ -28,7 +28,7 @@
             border-radius: 10px;
             padding-left: 8px;
             height: 48px;
-            width: 128px;
+            width: 120px;
           }
         }
       }
@@ -74,6 +74,12 @@
         border: none;
         background-color: white;
         color: var(--pink);
+        transition: 0.3s ease;
+
+        &:hover {
+          color: var(--pink-hover);
+          text-decoration: underline;
+        }
       }
     }
   }

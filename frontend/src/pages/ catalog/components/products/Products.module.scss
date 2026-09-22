@@ -4,12 +4,16 @@
   flex-direction: column;
   align-items: center;
 
+  p {
+    font-weight: 500;
+    font-size: 20px;
+  }
+
   .products {
-    width: calc(var(--card-width) * 3 + 32px);
+    width: calc(var(--card-width) * 3);
     display: flex;
     flex-wrap: wrap;
     row-gap: 1em;
-    column-gap: 1em;
   }
 
   .pageButtons {
@@ -17,13 +21,13 @@
     align-items: center;
 
     .leftArrow {
-      left: 260px;
+      left: 350px;
       position: absolute;
     }
 
     .rightArrow {
       position: absolute;
-      right: 260px;
+      right: 350px;
     }
   }
 }

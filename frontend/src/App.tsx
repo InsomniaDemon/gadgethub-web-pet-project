@@ -6,21 +6,24 @@ import LoginPage from "./pages/login/LoginPage.tsx"
 import CatalogPage from "./pages/ catalog/CatalogPage.tsx"
 import CartPage from "./pages/cart/CartPage.tsx"
 import {AuthProvider} from "./shared/contexts/AuthContext.tsx";
+import {CartProvider} from "./shared/contexts/CartContext.tsx";
 
 function App() {
   return (
       <AuthProvider>
-          <BrowserRouter>
-              <Header/>
-                <Routes>
-                    <Route path="/" element={<HomePage />}></Route>
-                    <Route path="/login" element={<LoginPage />}></Route>
-                    <Route path="/catalog" element={<CatalogPage />}></Route>
-                    <Route path="/cart" element={<CartPage />}></Route>
-                    <Route path="*" element={<Navigate to="/"/>}></Route>
-                </Routes>
-              <Footer/>
-          </BrowserRouter>
+          <CartProvider>
+              <BrowserRouter>
+                  <Header/>
+                  <Routes>
+                      <Route path="/" element={<HomePage />}></Route>
+                      <Route path="/login" element={<LoginPage />}></Route>
+                      <Route path="/catalog" element={<CatalogPage />}></Route>
+                      <Route path="/cart" element={<CartPage />}></Route>
+                      <Route path="*" element={<Navigate to="/"/>}></Route>
+                  </Routes>
+                  <Footer/>
+              </BrowserRouter>
+          </CartProvider>
       </AuthProvider>
   )
 }

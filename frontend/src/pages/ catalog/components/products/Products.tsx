@@ -57,6 +57,7 @@ function Products({sortType, filters, onClick}: {sortType: number, filters: Filt
 
     return (
         <div className={styles.wrapper}>
+            { totalPages === 0 && <p>По данному запросу ничего не нашлось :(</p>}
             <div className={styles.products}>
                 {currentProducts.map(product =>
                     <GoodsCardWrapper key={product.id} product={product} onClick={onClick}/>
@@ -64,11 +65,11 @@ function Products({sortType, filters, onClick}: {sortType: number, filters: Filt
             </div>
             <div className={styles.pageButtons}>
                 <div className={styles.leftArrow}>
-                    { currentPage !== 1 && <Arrow isForward={false} onClick={() => setCurrentPage(currentPage - 1)}/>}
+                    { (totalPages > 0 && currentPage !== 1) && <Arrow isForward={false} onClick={() => setCurrentPage(currentPage - 1)}/>}
                 </div>
                 <PagesButtons currentPage={currentPage} pagesToShow={getPages(currentPage, totalPages)} onClick={setCurrentPage}/>
                 <div className={styles.rightArrow}>
-                    { currentPage !== totalPages && <Arrow isForward={true} onClick={() => setCurrentPage(currentPage + 1)}/>}
+                    { (totalPages > 0 && currentPage !== totalPages) && <Arrow isForward={true} onClick={() => setCurrentPage(currentPage + 1)}/>}
                 </div>
             </div>
         </div>

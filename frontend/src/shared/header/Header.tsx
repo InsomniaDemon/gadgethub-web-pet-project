@@ -2,14 +2,18 @@ import {Link} from "react-router-dom";
 
 import styles from "./Header.module.scss"
 import {useAuth} from "../contexts/AuthContext.tsx";
+import {useCart} from "../contexts/CartContext.tsx";
 
 
 function Header() {
     const { isLoggedIn, setIsLoggedIn, logout } = useAuth()
+    const { clearCart } = useCart()
 
     const handleLogout = () => {
         logout()
+        clearCart()
         setIsLoggedIn(false)
+
     }
 
     return (

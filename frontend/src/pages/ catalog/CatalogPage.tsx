@@ -16,21 +16,6 @@ function CatalogPage() {
     const [maxPrice, setMaxPrice] = useState<number>(1000000)
     const [popupProduct, setPopupProduct] = useState<Product | undefined>()
 
-    /*
-    {
-        id: 137,
-        title: "Смартфон Samsung Galaxy Z Flip5 8/256GB фиолетовый",
-        price: 1234,
-        text: "putin lox",
-        specs: {"Гарантия": "1 год", "Экран": "3.4\"/720×748 Пикс", "Процессор": "Qualcomm Snapdragon 8 Gen 2 1×3.36 ГГц + 2×2.8 ГГц + 2×2.8 ГГц + 3×2.0 ГГц"},
-        image: "./images/goods/image_1.png",
-        labels: ["new"],
-        stars: 3.2,
-        type: "phone",
-        colour: "white",
-    }
-     */
-
     const [filters, setFilters] = useState<Filters>({
         colours: [],
         types: [],

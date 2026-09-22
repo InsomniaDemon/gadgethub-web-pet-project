@@ -18,12 +18,34 @@
     padding: 105px 156px;
     background-color: white;
     width: 1028px;
-    height: 521px;
+    min-height: 521px;
     border-radius: 30px;
     position: fixed;
     display: flex;
     flex-direction: column;
     gap: 14px;
+
+    .cross {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: white;
+      border: none;
+      border-radius: 50%;
+      position: absolute;
+      right: 20px;
+      top: 26px;
+
+      img {
+        width: 20px;
+      }
+
+      &:hover {
+        background-color: var(--arrow-hover-bg);
+      }
+    }
 
     .wrapper {
       display: flex;
@@ -48,11 +70,71 @@
         padding-left: 2em;
         display: flex;
         flex-direction: column;
-        gap: 1em;
+        gap: 2em;
 
-        p {
+        .title {
+          display: flex;
+          flex-direction: column;
+          gap: 1em;
+
+          p {
+            font-weight: 500;
+            font-size: 32px;
+            margin: 0;
+          }
+
+          .stars {
+            color: var(--sub-text);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+
+            img {
+              width: 20px;
+            }
+          }
+        }
+
+        .description {
+          color: var(--sub-text);
+        }
+
+        .specs {
+          display: flex;
+          flex-direction: column;
+          gap: 1em;
+
+          p {
+            font-weight: 500;
+            font-size: 20px;
+            margin: 0;
+          }
+
+          .specsRow {
+            display: flex;
+            align-items: flex-start;
+
+            .specsLabel {
+              color: var(--sub-text);
+            }
+
+            .specsLine {
+              flex: 1 1 auto;
+              margin: 18px 2px 0 2px;
+              border-bottom: 1px solid var(--specs-line);
+            }
+
+            .specsValue {
+              max-width: 240px;
+              color: var(--sub-text);
+            }
+          }
+        }
+
+        .price {
           font-weight: 500;
           font-size: 32px;
+          margin: auto 0 0 auto;
         }
       }
     }

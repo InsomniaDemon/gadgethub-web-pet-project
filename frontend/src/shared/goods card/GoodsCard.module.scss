@@ -1,22 +1,22 @@
 .card {
-    width: 220px;
-    height: 350px;
+    width: 292px;
+    height: 410px;
     border-radius: 1em;
     transition: 0.3s ease;
-
     padding: 14px;
+
     .productImgContainer {
         position: relative;
         border-radius: 1em;
         background-color: var(--product-background);
-        width: 220px;
-        height: 250px;
+        width: 292px;
+        height: 320px;
         display: flex;
         align-items: center;
         justify-content: center;
 
         .productImg {
-            width: 50%;
+            width: 58%;
             mix-blend-mode: multiply;
         }
         .labels {
