@@ -1,6 +1,9 @@
 import {useAuth} from "../../shared/contexts/AuthContext.tsx";
 import {useNavigate} from "react-router-dom";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import Cart from "./components/cart/Cart.tsx";
+import History from "./components/history/History.tsx";
+import styles from "./CartPage.module.scss"
 
 
 function CartPage() {
@@ -14,8 +17,27 @@ function CartPage() {
         }
     },[isLoggedIn])
 
+    const [subPage, setSubpage] = useState<"cart" | "history">("cart")
+
     return (
-        <>Cart</>
+        <div className={styles.bg}>
+            <div className="container">
+                <div className={styles.cartPage}>
+                    <div>
+                        <label className={styles.subPage} >
+                            <input type="radio" name="page" checked={subPage === "cart"} onClick={() => setSubpage("cart")}></input>
+                            <span>Корзина</span>
+                        </label>
+                        <label className={styles.subPage}>
+                            <input type="radio" name="page" checked={subPage === "history"} onClick={() => setSubpage("history")}></input>
+                            <span>История заказов</span>
+                        </label>
+                    </div>
+                    {subPage === "cart" && <Cart/>}
+                    {subPage === "history" && <History/>}
+                </div>
+            </div>
+        </div>
     )
 }
 

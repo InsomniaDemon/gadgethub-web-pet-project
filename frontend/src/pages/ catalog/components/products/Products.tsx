@@ -32,6 +32,7 @@ function Products({sortType, filters, onClick}: {sortType: number, filters: Filt
 
     useEffect(() => {
         setFilteredProducts(getFilteredProducts)
+        setCurrentPage(1)
     }, [filters, products])
 
     const sortedProducts = useMemo(() => {

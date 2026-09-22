@@ -38,7 +38,7 @@ function Popup({product, onClick}: {product: Product, onClick: Dispatch<SetState
                         <p className={styles.price}>{product.price}₽</p>
                     </div>
                 </div>
-                <ToCartButton product={product}/>
+                <ToCartButton product={product} isReversed={true}/>
             </div>
         </div>
     )

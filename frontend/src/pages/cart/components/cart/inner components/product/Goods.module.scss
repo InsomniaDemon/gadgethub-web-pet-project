@@ -1,0 +1,40 @@
+.goods {
+  display: flex;
+  align-items: flex-start;
+  padding: 1em 0;
+  position: relative;
+
+  .imgContainer {
+    border-radius: 1em;
+    background-color: var(--product-background);
+    width: 148px;
+    height: 148px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 58%;
+      mix-blend-mode: multiply;
+    }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--goods-line);
+    border-radius: 4px;
+  }
+
+  .delete {
+    display: flex;
+    align-items: center;
+    border: none;
+    color: var(--pink);
+    background-color: transparent;
+  }
+}

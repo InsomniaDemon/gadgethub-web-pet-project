@@ -1,4 +1,6 @@
 .toCartButton {
+  margin-top: auto;
+  margin-left: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,32 +30,71 @@
   }
 }
 
-.inCartButton {
+.reversed {
+  flex-direction: row-reverse;
+}
+
+.inCartButtonWrapper {
+  margin-top: auto;
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 1em;
-  background-color: var(--pink);
-  border: none;
-  border-radius: 10px;
-  width: 130px;
-  height: 48px;
-  color: white;
-  transition: 0.3s ease;
 
-  img {
-    width: 20px;
+  .inCartButton {
+    margin-left: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    background-color: var(--pink);
+    border: none;
+    border-radius: 10px;
+    width: 130px;
+    height: 48px;
+    color: white;
+    transition: 0.3s ease;
+
+    img {
+      width: 20px;
+    }
+
+    &:hover {
+      background-color: var(--pink-hover);
+    }
+
+    &:focus {
+      outline-color: var(--focus-blue);
+    }
+
+    &:disabled {
+      background-color: var(--blue-button-disabled);
+    }
   }
 
-  &:hover {
-    background-color: var(--pink-hover);
-  }
+  .quantity {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
 
-  &:focus {
-    outline-color: var(--focus-blue);
-  }
+    span {
+      width: 60px;
+      display: flex;
+      justify-content: center;
+    }
 
-  &:disabled {
-    background-color: var(--blue-button-disabled);
+    button {
+      font-size: 24px;
+      color: var(--light-blue);
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      transition: 0.3s ease;
+
+      &:hover {
+        background-color: var(--light-blue);
+        color: white;
+      }
+    }
   }
 }

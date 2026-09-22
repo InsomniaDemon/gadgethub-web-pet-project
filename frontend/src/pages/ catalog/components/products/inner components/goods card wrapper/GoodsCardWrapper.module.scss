@@ -7,11 +7,6 @@
   flex-direction: column;
   gap: 4px;
 
-  button {
-    margin-top: auto;
-    margin-left: 14px;
-  }
-
   &:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   }

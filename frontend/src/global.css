@@ -47,6 +47,9 @@ main {
     --selected-sort-bg: #84adff;
     --price-slider-green: #00e398;
     --specs-line:  #b9b9b9;
+    --cart-pages-line: #AEBDDB;
+    --cart-bg: #f3f6fa;
+    --goods-line: #f1f3f5;
 
     --card-width: 320px;
     --card-height: 424px;

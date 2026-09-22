@@ -9,7 +9,7 @@ function GoodsCardWrapper({product, onClick}: {product: Product, onClick: Dispat
     return (
         <div className={styles.card} onClick={() => onClick(product)}>
             <GoodsCard product={product} disableHover={true}/>
-            <ToCartButton product={product}/>
+            <ToCartButton product={product} isReversed={false}/>
         </div>
     )
 }

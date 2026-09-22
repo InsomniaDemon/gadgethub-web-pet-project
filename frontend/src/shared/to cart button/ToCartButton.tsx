@@ -1,34 +1,57 @@
 import styles from "./ToCartButton.module.scss"
 import {useCart} from "../contexts/CartContext.tsx";
 import type {Product} from "../../dtos/Product.ts";
-import {useState} from "react";
 import * as React from "react";
+import {useNavigate} from "react-router-dom";
 
-function ToCartButton({product}: {product: Product}) {
-    const {addProduct, getProductQuantity} = useCart()
+function ToCartButton({product, isReversed}: {product: Product, isReversed: boolean}) {
+    const {addProduct, getProductQuantity, changeProductQuantity, deleteProduct} = useCart()
+    const navigate = useNavigate()
 
-    const [quantity, setQuantity] = useState<number>(getProductQuantity(product))
+    const quantity = getProductQuantity(product);
 
-    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleAddingToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation()
         addProduct(product)
-        setQuantity(1)
+    }
+
+    const handleIncreasingQuantity = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.stopPropagation()
+        changeProductQuantity(product, quantity + 1)
+    }
+
+    const handleDecreasingQuantity = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.stopPropagation()
+        if (quantity - 1 === 0) deleteProduct(product)
+        else changeProductQuantity(product, quantity - 1)
     }
 
     return (
         <>
             {quantity === 0 &&
-                <button className={styles.toCartButton} onClick={handleClick}>
+                <button className={styles.toCartButton} onClick={handleAddingToCart}>
                     <img src="/src/assets/images/icons/cart-white.png" alt="Cart img"></img>
                     В корзину
                 </button>
             }
             {quantity > 0 &&
-                <button className={styles.inCartButton} onClick={() => addProduct(product)}>
-                    <img src="/src/assets/images/icons/cart-white.png" alt="Cart img"></img>
-                    {quantity} шт.
-                </button>
-
+                <div className={isReversed
+                    ? `${styles.inCartButtonWrapper} ${styles.reversed}`
+                    : styles.inCartButtonWrapper}>
+                    <button className={styles.inCartButton} onClick={() => navigate('/cart')}>
+                        <img src="/src/assets/images/icons/cart-white.png" alt="Cart img"></img>
+                        {quantity} шт.
+                    </button>
+                    <div className={styles.quantity}>
+                        <button onClick={handleDecreasingQuantity}>
+                            -
+                        </button>
+                        <span>{quantity}</span>
+                        <button onClick={handleIncreasingQuantity}>
+                            +
+                        </button>
+                    </div>
+                </div>
             }
         </>
     )

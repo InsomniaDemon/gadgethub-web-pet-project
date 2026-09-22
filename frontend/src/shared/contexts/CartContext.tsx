@@ -1,11 +1,7 @@
 import { createContext, useContext, useState } from "react"
 import * as React from "react"
 import type {Product} from "../../dtos/Product.ts";
-
-type CartItem = {
-    product: Product,
-    quantity: number
-}
+import type {CartItem} from "../../dtos/CartItem.ts";
 
 interface CartContextType {
     items: CartItem[],
@@ -13,7 +9,9 @@ interface CartContextType {
     changeProductQuantity: (product: Product, newQuantity: number) => void,
     deleteProduct: (product: Product) => void,
     clearCart: () => void,
-    getProductQuantity: (product: Product) => number
+    getProductQuantity: (product: Product) => number,
+    getQuantity: () => number,
+    getItems: () => CartItem[]
 }
 
 const CartContext = createContext<CartContextType | null>(null)
@@ -58,8 +56,16 @@ export function CartProvider({children}: {children: React.ReactNode}) {
         return items.find((item) => item.product.id === product.id)?.quantity ?? 0
     }
 
+    const getQuantity = () => {
+        return items.reduce((sum, n) => sum + n.quantity, 0)
+    }
+
+    const getItems = () => {
+        return items
+    }
+
     return (
-        <CartContext.Provider value={{items, addProduct, changeProductQuantity, deleteProduct, clearCart, getProductQuantity}}>
+        <CartContext.Provider value={{items, addProduct, changeProductQuantity, deleteProduct, clearCart, getProductQuantity, getQuantity, getItems}}>
             {children}
         </CartContext.Provider>
     )
