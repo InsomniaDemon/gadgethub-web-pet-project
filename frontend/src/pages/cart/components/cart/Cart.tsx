@@ -9,11 +9,14 @@ function Cart() {
 
     return (
         <div className={styles.cart}>
-            <div className={styles.goods}>
-                {items.map(item =>
-                    <Goods product={item.product} quantity={item.quantity}/>
-                )}
-            </div>
+            {items.length !== 0 &&
+                <div className={styles.goods}>
+                    {items.map(item =>
+                        <Goods product={item.product} quantity={item.quantity}/>
+                    )}
+                </div>
+            }
+            {items.length === 0 &&}
         </div>
     )
 }

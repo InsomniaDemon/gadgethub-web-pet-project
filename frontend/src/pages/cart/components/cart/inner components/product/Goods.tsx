@@ -4,7 +4,7 @@ import {useCart} from "../../../../../../shared/contexts/CartContext.tsx";
 import * as React from "react";
 
 function Goods({product, quantity}: {product: Product, quantity: number}) {
-    const { deleteProduct } = useCart()
+    const { deleteProduct, changeProductQuantity } = useCart()
 
 
     return (
@@ -14,11 +14,11 @@ function Goods({product, quantity}: {product: Product, quantity: number}) {
             </div>
             <span>{product.title}</span>
             <div className={styles.quantity}>
-                <button>
+                <button onClick={() => quantity === 1 ? deleteProduct(product) : changeProductQuantity(product, --quantity)}>
                     -
                 </button>
                 <span>{quantity}</span>
-                <button>
+                <button onClick={() => changeProductQuantity(product, ++quantity)}>
                     +
                 </button>
             </div>
