@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
 
 @Repository
 public class AuthorisationRepository {
@@ -18,9 +19,9 @@ public class AuthorisationRepository {
         this.dataSource = dataSource;
     }
 
-    public String getPassword(String login) throws NoSuchUserException, SQLException {
+    public Map.Entry<Long, String> getPassword(String login) throws NoSuchUserException, SQLException {
         String sql = """
-            SELECT password FROM authorisation
+            SELECT id, password FROM authorisation
             WHERE login = (?)
         """;
 
@@ -32,7 +33,7 @@ public class AuthorisationRepository {
                 if  (!resultSet.next()) {
                     throw new NoSuchUserException("No such authorisation data");
                 }
-                return resultSet.getString("password");
+                return Map.entry(resultSet.getLong("id"), resultSet.getString("password"));
             }
         } finally {
             DataSourceUtils.releaseConnection(connection, dataSource);

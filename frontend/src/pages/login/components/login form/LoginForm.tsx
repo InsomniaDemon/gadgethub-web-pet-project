@@ -22,11 +22,10 @@ function LoginForm() {
         setError(null)
 
         try {
-            if(await checkCredentials(login, password)) {
-                logIn()
-                setIsLoggedIn(true)
-                navigate("/")
-            }
+            const clientId = await checkCredentials(login, password)
+            logIn(clientId)
+            setIsLoggedIn(true)
+            navigate("/")
         } catch (err) {
             setError(
                 err instanceof ApiError

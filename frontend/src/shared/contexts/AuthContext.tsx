@@ -4,8 +4,9 @@ import * as React from "react"
 interface AuthContextType {
     isLoggedIn: boolean
     setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
-    logIn: () => void
+    logIn: (clientId: number) => void
     logout: () => void
+    getClientId: () => number
 }
 
 
@@ -15,21 +16,25 @@ export function AuthProvider({children}: {children: React.ReactNode}) {
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(() => {
             return localStorage.getItem("isLoggedIn") === "true"
         }
-
     )
 
-    const logIn = () => {
+    const logIn = (clientId: number) => {
         localStorage.setItem("isLoggedIn", "true")
+        localStorage.setItem("clientId", String(clientId))
         setIsLoggedIn(true)
     }
 
     const logout = () => {
         localStorage.setItem("isLoggedIn", "false")
+        localStorage.setItem("clientId", String("undefined"))
+        setIsLoggedIn(true)
         setIsLoggedIn(false)
     }
 
+    const getClientId = () => { return Number(localStorage.getItem("clientId"))}
+
     return (
-        <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, logIn, logout }}>
+        <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, logIn, logout, getClientId }}>
             {children}
         </AuthContext.Provider>
     )

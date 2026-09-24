@@ -5,7 +5,7 @@ import {type Dispatch, type SetStateAction, useEffect, useMemo, useState} from "
 import PagesButtons from "./inner components/PagesButtons/PagesButtons.tsx"
 import {getPages} from "./utils/Pagination.ts"
 import Arrow from "../../../../shared/arrow/Arrow.tsx";
-import {getAllProductsRequest} from "../../api/Catalog.ts";
+import {getAllProductsRequest} from "../../api/CatalogPageAPI.ts";
 import {sortAsc, sortBestseller, sortDesc, sortNew} from "./utils/Sorts.ts";
 import type {Filters} from "../../../../dtos/Filters.ts";
 

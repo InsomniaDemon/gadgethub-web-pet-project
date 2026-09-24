@@ -13,12 +13,12 @@ public class AuthorisationService {
 
     public AuthorisationService(AuthorisationRepository authorisationRepository) { this.authorisationRepository = authorisationRepository; }
 
-    public boolean checkCredentials (String login, String password) {
+    public Long checkCredentials (String login, String password) {
         try {
-            if (!password.equals(authorisationRepository.getPassword(login))) {
+            if (!password.equals(authorisationRepository.getPassword(login).getValue())) {
                 throw new InvalidCredentials("Invalid login or password");
             }
-            return true;
+            return authorisationRepository.getPassword(login).getKey();
         } catch (NoSuchUserException e) {
             throw new InvalidCredentials("Invalid login or password");
         } catch (SQLException e) {

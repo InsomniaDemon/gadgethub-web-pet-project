@@ -1,5 +1,5 @@
 .bg {
-  min-height: 530px;
+  min-height: 610px;
   height: 100%;
   background-color: var(--cart-bg);
 
@@ -17,6 +17,10 @@
       padding: 20px 40px;
       border-bottom: 2px solid var(--cart-pages-line);
       transition: color 0.3s ease;
+
+      &:hover {
+        cursor: pointer;
+      }
 
       &::after {
         content: "";

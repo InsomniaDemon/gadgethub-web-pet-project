@@ -12,7 +12,7 @@ public class AuthorisationController {
     public AuthorisationController(AuthorisationService authorisationService) { this.authorisationService = authorisationService; }
 
     @PostMapping("/login")
-    public boolean postCheckCredentials(@RequestBody LoginRequest request) {
+    public Long postCheckCredentials(@RequestBody LoginRequest request) {
         return authorisationService.checkCredentials(request.login(), request.password());
     }
 }

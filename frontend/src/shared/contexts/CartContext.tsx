@@ -7,7 +7,8 @@ interface CartContextType {
     items: CartItem[],
     addProduct: (product: Product) => void,
     changeProductQuantity: (product: Product, newQuantity: number) => void,
-    deleteProduct: (product: Product) => void,
+    deleteProduct: (productId: number) => void,
+    deleteProducts: (productIds: Set<number>) => void,
     clearCart: () => void,
     getProductQuantity: (product: Product) => number,
     getQuantity: () => number,
@@ -38,9 +39,18 @@ export function CartProvider({children}: {children: React.ReactNode}) {
         setItems(updatedItems)
     }
 
-    const deleteProduct = (product: Product) => {
+    const deleteProduct = (productId: number) => {
         const updatedItems = items.filter((item) =>
-            item.product.id !== product.id
+            item.product.id !== productId
+        )
+
+        localStorage.setItem("items", JSON.stringify(updatedItems))
+        setItems(updatedItems)
+    }
+
+    const deleteProducts = (productIds: Set<number>) => {
+        const updatedItems = items.filter((item) =>
+            !productIds.has(item.product.id)
         )
 
         localStorage.setItem("items", JSON.stringify(updatedItems))
@@ -65,7 +75,7 @@ export function CartProvider({children}: {children: React.ReactNode}) {
     }
 
     return (
-        <CartContext.Provider value={{items, addProduct, changeProductQuantity, deleteProduct, clearCart, getProductQuantity, getQuantity, getItems}}>
+        <CartContext.Provider value={{items, addProduct, changeProductQuantity, deleteProduct, deleteProducts, clearCart, getProductQuantity, getQuantity, getItems}}>
             {children}
         </CartContext.Provider>
     )

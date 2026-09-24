@@ -5,7 +5,7 @@ import styles from "./CatalogPage.module.scss"
 import Products from "./components/products/Products.tsx";
 import Sidebar from "./components/sidebar/Sidebar.tsx";
 import type {Filters} from "../../dtos/Filters.ts";
-import {getMaxPrice} from "./api/Catalog.ts";
+import {getMaxPrice} from "./api/CatalogPageAPI.ts";
 import Popup from "./components/popup/Popup.tsx";
 import type {Product} from "../../dtos/Product.ts";
 

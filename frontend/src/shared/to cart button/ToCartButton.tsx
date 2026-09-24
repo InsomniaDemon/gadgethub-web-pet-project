@@ -22,7 +22,7 @@ function ToCartButton({product, isReversed}: {product: Product, isReversed: bool
 
     const handleDecreasingQuantity = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation()
-        if (quantity - 1 === 0) deleteProduct(product)
+        if (quantity - 1 === 0) deleteProduct(product.id)
         else changeProductQuantity(product, quantity - 1)
     }
 

@@ -25,11 +25,11 @@ function CartPage() {
                 <div className={styles.cartPage}>
                     <div>
                         <label className={styles.subPage} >
-                            <input type="radio" name="page" checked={subPage === "cart"} onClick={() => setSubpage("cart")}></input>
+                            <input type="radio" name="page" checked={subPage === "cart"} onChange={() => setSubpage("cart")}></input>
                             <span>Корзина</span>
                         </label>
                         <label className={styles.subPage}>
-                            <input type="radio" name="page" checked={subPage === "history"} onClick={() => setSubpage("history")}></input>
+                            <input type="radio" name="page" checked={subPage === "history"} onChange={() => setSubpage("history")}></input>
                             <span>История заказов</span>
                         </label>
                     </div>
