@@ -3,7 +3,7 @@ import type {OrderSummary} from "../../../dtos/OrderSummary.ts";
 
 const BASE_URL = 'http://localhost:8080/api/orders';
 
-export async function postNewOrder(newOrder: NewOrder): Promise<boolean> {
+export async function postNewOrder(newOrder: NewOrder): Promise<number> {
     const path = `/new`
 
     const response = await fetch(`${BASE_URL}${path}`, {
