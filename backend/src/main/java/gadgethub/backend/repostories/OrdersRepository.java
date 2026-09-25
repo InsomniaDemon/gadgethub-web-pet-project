@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,11 +74,13 @@ public class OrdersRepository {
     }
 
     private OrderSummary mapRowToOrderSummary(ResultSet resultSet) throws SQLException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        String formatted = resultSet.getTimestamp("create_date").toLocalDateTime().format(formatter);
         return new OrderSummary(
                 resultSet.getLong("id"),
                 resultSet.getLong("products_amount"),
                 resultSet.getLong("total_price"),
-                resultSet.getTimestamp("create_date")
+                formatted
         );
     }
 

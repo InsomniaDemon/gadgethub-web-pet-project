@@ -5,31 +5,65 @@ import type {CartItem} from "../../../../../../dtos/CartItem.ts"
 import * as React from "react"
 import {useAuth} from "../../../../../../shared/contexts/AuthContext.tsx";
 import {postNewOrder} from "../../../../api/CartPageAPI.ts";
+import {IMaskInput} from "react-imask";
 
-function Order({items}: {items: CartItem[]}) {
+type FormErrors = {
+    phone?: string
+    address?: string
+    paymentMethod?: string
+}
+
+function Order({items, onSuccess}: {items: CartItem[], onSuccess: () => void}) {
     const { getClientId } = useAuth()
 
     const [paymentMethod, setPaymentMethod] = useState<string | null>(null)
     const [isToTheDoor, setIsToTheDoor] = useState<boolean>(false)
+    const [rawPhone, setRawPhone] = useState("")
+    const [errors, setErrors] = useState<FormErrors>({})
 
     const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
 
+        setErrors({})
+        const newErrors: FormErrors = {}
+        let toAbort: boolean = false
+
         const clientId = getClientId()
 
-        console.log(clientId)
-
         const formData = new FormData(e.currentTarget)
-        const email = formData.get("email") as string
-        const phone = formData.get("phone") as string
+        let email: string | null = formData.get("email") as string
+        if (email.length === 0) {
+            email = null
+        }
+        const phone = rawPhone
         const address = isToTheDoor ? (formData.get("address") as string) : null
         const isCash = paymentMethod === "Наличные"
-        const isPackageRequired = formData.get("packaging") === "on";
+        const isPackageRequired = formData.get("packaging") === "on"
 
         const productsAmount = items.reduce((sum, item) => sum + item.quantity, 0);
         const totalPrice = items.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
 
         const productsJson = JSON.stringify(items)
+
+        if (phone.length != 11) {
+            newErrors.phone = "Введите корректный номер телефона"
+            toAbort = true
+        }
+
+        if (!paymentMethod) {
+            newErrors.paymentMethod = "Выберите способ оплаты"
+            toAbort = true
+        }
+
+        if (isToTheDoor && !address) {
+            newErrors.address = "Укажите адрес доставки"
+            toAbort = true
+        }
+
+        if (toAbort) {
+            setErrors(newErrors)
+            return
+        }
 
         try {await postNewOrder({
             clientId: clientId,
@@ -45,6 +79,8 @@ function Order({items}: {items: CartItem[]}) {
         catch (err) {
             console.log(err)
         }
+
+        onSuccess()
     }
 
     return (
@@ -54,7 +90,14 @@ function Order({items}: {items: CartItem[]}) {
                 <div className={styles.contactData}>
                     <label>
                         <span>Телефон</span>
-                        <input name="phone" placeholder="88005553535"/>
+                        <IMaskInput
+                            mask="8 (000) 000-00-00"
+                            placeholder="8 (XXX) XXX-XX-XX"
+                            unmask={true}
+                            onAccept={(value) => setRawPhone("8" + value)}
+                            className={errors.phone ? styles.errorInput : ""}
+                        />
+                        {errors.phone && <span className={styles.errorText}>{errors.phone}</span>}
                         <span className={styles.star}>*</span>
                     </label>
                     <label>
@@ -75,13 +118,15 @@ function Order({items}: {items: CartItem[]}) {
                 {isToTheDoor &&
                     <label className={styles.delivery}>
                         <span>Адрес доставки</span>
-                        <input name="address" placeholder="Улица Шишкина 128"/>
+                        <input name="address" placeholder="Улица Шишкина 128" className={errors.address ? styles.errorInput : ""}/>
                         <span className={styles.star}>*</span>
+                        {errors.address && <span className={styles.errorText}>{errors.address}</span>}
                     </label>}
-                <label className={styles.dropdown}>
-                    <Select options={["Наличные", "Банковская карта"]} value={paymentMethod} placeholder={"Не выбрано"} onChange={setPaymentMethod}/>
+                <div className={styles.dropdown}>
+                    <Select options={["Наличные", "Банковская карта"]} value={paymentMethod} placeholder={"Не выбрано"} onChange={setPaymentMethod} error={errors.paymentMethod}/>
                     <span className={styles.star}>*</span>
-                </label>
+                    {errors.paymentMethod && <span className={styles.errorText}>{errors.paymentMethod}</span>}
+                </div>
                 <label className={styles.package}>
                     <input type="checkbox" name="packaging"></input>
                     <span>Нужна упаковка</span>

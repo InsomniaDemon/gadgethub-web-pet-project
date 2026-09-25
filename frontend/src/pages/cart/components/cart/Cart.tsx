@@ -97,7 +97,7 @@ function Cart() {
                         <span className={styles.summary}>{calculateQuantity()} товар{getEnding()} на {calculatePrice()} ₽</span>
                     </div>
 
-                    <Order items={items}/>
+                    <Order items={items} onSuccess={deleteAll}/>
                 </div>
             }
             {items.length === 0 && <EmptyCart/>}

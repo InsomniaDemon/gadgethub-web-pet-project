@@ -1,6 +1,6 @@
-export type OrderData = {
+export type OrderSummary = {
     id: number;
-    products_amount: number;
-    total_price: number;
-    create_date: string;
+    productsAmount: number;
+    totalPrice: number;
+    createDate: string;
 }
