@@ -4,9 +4,15 @@ import Goods from "./inner components/product/Goods.tsx";
 import EmptyCart from "./inner components/empty cart/EmptyCart.tsx";
 import {useState} from "react";
 import Order from "./inner components/order/Order.tsx";
+import DeletePopup from "../delete popup/DeletePopup.tsx";
+import OrderPopup from "../order popup/OrderPopup.tsx";
 
 function Cart() {
     const { getItems, deleteProducts, clearCart } = useCart()
+
+    const [deletePopupText, setDeletePopupText] = useState<string | undefined>(undefined)
+    const [orderId, setOrderId] = useState<number | undefined>(undefined)
+    const [deleteFunc, setDeleteFunc] = useState<() => void | undefined>(undefined)
 
     const items = getItems()
 
@@ -42,9 +48,19 @@ function Cart() {
         })
     }
 
+    const handleSelectedDelection = () => {
+        setDeleteFunc(() => deleteSelected)
+        setDeletePopupText("Вы действительно хотите удалить выделенные товары?")
+    }
+
     const deleteSelected = () => {
         deleteProducts(selectedIds)
         setSelectedIds(new Set())
+    }
+
+    const handleDeleteAll = () => {
+        setDeleteFunc(() => deleteAll)
+        setDeletePopupText("Вы действительно хотите удалить все товары?")
     }
 
     const deleteAll = () => {
@@ -72,6 +88,8 @@ function Cart() {
 
     return (
         <>
+            {deletePopupText && <DeletePopup text={deletePopupText} close={() => setDeletePopupText(undefined)} onDelete={deleteFunc}/>}
+            {orderId && <OrderPopup orderId={orderId} close={() => setOrderId(undefined)}/>}
             {items.length !== 0 &&
                 <div className={styles.cart}>
                     <div className={styles.goods}>
@@ -81,23 +99,21 @@ function Cart() {
                                 <span>Выбрать всe</span>
                             </label>
                             {(selectedIds.size > 0 && selectedIds.size < items.length) &&
-                                <button onClick={deleteSelected} className={styles.delete}>
+                                <button onClick={handleSelectedDelection} className={styles.delete}>
                                     <img src="src/assets/images/icons/pink-cross.png" alt="Cross img" className={styles.crossImg}/>
                                     <span>Удалить выделенные</span>
                                 </button>}
                             {selectedIds.size === items.length &&
-                                <button onClick={deleteAll} className={styles.delete}>
+                                <button onClick={handleDeleteAll} className={styles.delete}>
                                     <img src="src/assets/images/icons/pink-cross.png" alt="Cross img" className={styles.crossImg}/>
                                     <span>Удалить все</span>
                                 </button>}
                         </div>
-                        {items.map(item =>
-                            <Goods key={item.product.id} product={item.product} quantity={item.quantity} checked={selectedIds.has(item.product.id)} onToggle={() => toggleOne(item.product.id)} onDelete={() => deleteFromSelectedIds(item.product.id)}/>
+                        {items.map(item => <Goods key={item.product.id} product={item.product} quantity={item.quantity} checked={selectedIds.has(item.product.id)} onToggle={() => toggleOne(item.product.id)} onDelete={() => deleteFromSelectedIds(item.product.id)}/>
                         )}
                         <span className={styles.summary}>{calculateQuantity()} товар{getEnding()} на {calculatePrice()} ₽</span>
                     </div>
-
-                    <Order items={items} onSuccess={deleteAll}/>
+                    <Order items={items} onSuccess={deleteAll} setOrderId={setOrderId}/>
                 </div>
             }
             {items.length === 0 && <EmptyCart/>}

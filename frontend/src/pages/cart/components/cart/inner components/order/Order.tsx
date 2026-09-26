@@ -13,7 +13,7 @@ type FormErrors = {
     paymentMethod?: string
 }
 
-function Order({items, onSuccess}: {items: CartItem[], onSuccess: () => void}) {
+function Order({items, onSuccess, setOrderId}: {items: CartItem[], onSuccess: () => void, setOrderId: (orderId: number) => void}) {
     const { getClientId } = useAuth()
 
     const [paymentMethod, setPaymentMethod] = useState<string | null>(null)
@@ -65,17 +65,20 @@ function Order({items, onSuccess}: {items: CartItem[], onSuccess: () => void}) {
             return
         }
 
-        try {await postNewOrder({
-            clientId: clientId,
-            products: productsJson,
-            productsAmount: productsAmount,
-            totalPrice: totalPrice,
-            email: email,
-            phone: phone,
-            address: address,
-            isCash: isCash,
-            isPackagingRequired: isPackageRequired
-        }) }
+        try {
+            const orderId = await postNewOrder({
+                clientId: clientId,
+                products: productsJson,
+                productsAmount: productsAmount,
+                totalPrice: totalPrice,
+                email: email,
+                phone: phone,
+                address: address,
+                isCash: isCash,
+                isPackagingRequired: isPackageRequired
+            })
+            setOrderId(orderId)
+        }
         catch (err) {
             console.log(err)
         }
