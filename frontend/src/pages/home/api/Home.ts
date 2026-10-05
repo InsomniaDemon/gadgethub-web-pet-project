@@ -1,5 +1,5 @@
 import type {Product} from "../../../dtos/Product.ts";
-import {API_URL} from "../../../main.tsx";
+import {API_URL} from "../../../config.ts";
 
 const BASE_URL = `${API_URL}`;
 

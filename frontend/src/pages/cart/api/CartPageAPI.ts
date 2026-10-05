@@ -1,6 +1,6 @@
 import type {NewOrder} from "../../../dtos/NewOrder.ts";
 import type {OrderSummary} from "../../../dtos/OrderSummary.ts";
-import {API_URL} from "../../../main.tsx";
+import {API_URL} from "../../../config.ts";
 
 const BASE_URL = `${API_URL}`;
 
