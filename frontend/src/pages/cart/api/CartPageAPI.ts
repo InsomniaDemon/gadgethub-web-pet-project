@@ -1,7 +1,8 @@
 import type {NewOrder} from "../../../dtos/NewOrder.ts";
 import type {OrderSummary} from "../../../dtos/OrderSummary.ts";
+import {API_URL} from "../../../main.tsx";
 
-const BASE_URL = 'http://localhost:8080/api/orders';
+const BASE_URL = `${API_URL}`;
 
 export async function postNewOrder(newOrder: NewOrder): Promise<number> {
     const path = `/new`

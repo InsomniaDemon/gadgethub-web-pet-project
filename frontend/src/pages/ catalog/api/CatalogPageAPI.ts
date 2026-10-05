@@ -1,6 +1,7 @@
 import type {Product} from "../../../dtos/Product.ts";
+import {API_URL} from "../../../main.tsx";
 
-const BASE_URL = 'http://localhost:8080/api';
+const BASE_URL = `${API_URL}`;
 
 export async function getAllProductsRequest(): Promise<Product[]> {
     const path = `/products`
