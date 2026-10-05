@@ -4,7 +4,7 @@ import {API_URL} from "../../../config.ts";
 const BASE_URL = `${API_URL}`;
 
 export async function checkCredentials(login: string, password: string): Promise<number> {
-    const path = `/login`
+    const path = `/auth/login`
 
     const response = await fetch(`${BASE_URL}${path}`, {
         method: 'POST',
