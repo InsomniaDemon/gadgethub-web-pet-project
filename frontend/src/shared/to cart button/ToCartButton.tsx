@@ -3,7 +3,7 @@ import {useCart} from "../contexts/CartContext.tsx";
 import type {Product} from "../../dtos/Product.ts";
 import * as React from "react";
 import {useNavigate} from "react-router-dom";
-import cart from "../../assets/images/social icons/cart-white.png"
+import cart from "../../assets/images/icons/cart-white.png"
 
 function ToCartButton({product, isReversed}: {product: Product, isReversed: boolean}) {
     const {addProduct, getProductQuantity, changeProductQuantity, deleteProduct} = useCart()

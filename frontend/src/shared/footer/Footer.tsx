@@ -2,7 +2,7 @@ import styles from "./Footer.module.scss"
 import vk from "../../assets/images/social icons/vk.png"
 import tg from "../../assets/images/social icons/telegram.png"
 import wu from "../../assets/images/social icons/whatsapp.png"
-import phone from "../../assets/images/social icons/mobile-blue.png"
+import phone from "../../assets/images/icons/mobile-blue.svg"
 
 function Footer() {
     return (

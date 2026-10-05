@@ -3,9 +3,9 @@ import {Link, NavLink} from "react-router-dom";
 import styles from "./Header.module.scss"
 import {useAuth} from "../contexts/AuthContext.tsx";
 import {useCart} from "../contexts/CartContext.tsx";
-import cart from "../../assets/images/social icons/cart.png"
-import catalog from "../../assets/images/social icons/catalog.svg"
-import profile from "../../assets/images/social icons/profile.png"
+import cart from "../../assets/images/icons/cart.svg"
+import catalog from "../../assets/images/icons/catalog.svg"
+import profile from "../../assets/images/icons/profile.svg"
 
 
 function Header() {
