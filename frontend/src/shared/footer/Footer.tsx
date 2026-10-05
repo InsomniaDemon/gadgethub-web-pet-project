@@ -2,6 +2,7 @@ import styles from "./Footer.module.scss"
 import vk from "../../assets/images/social icons/vk.png"
 import tg from "../../assets/images/social icons/telegram.png"
 import wu from "../../assets/images/social icons/whatsapp.png"
+import phone from "../../assets/images/social icons/mobile-blue.png"
 
 function Footer() {
     return (
@@ -13,7 +14,7 @@ function Footer() {
                             <p className={styles.logo}>Gadget Hub</p>
                         </div>
                         <a href="tel:8 800 555 35 35" className={styles.phone}>
-                            <img src="src/assets/images/icons/mobile-blue.svg" alt="Phone icon"/>
+                            <img src={phone} alt="Phone icon"/>
                             8 (800) 555 35 35
                         </a>
                         <div className={styles.socials}>

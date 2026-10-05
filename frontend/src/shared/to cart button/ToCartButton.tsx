@@ -3,6 +3,7 @@ import {useCart} from "../contexts/CartContext.tsx";
 import type {Product} from "../../dtos/Product.ts";
 import * as React from "react";
 import {useNavigate} from "react-router-dom";
+import cart from "../../assets/images/social icons/cart-white.png"
 
 function ToCartButton({product, isReversed}: {product: Product, isReversed: boolean}) {
     const {addProduct, getProductQuantity, changeProductQuantity, deleteProduct} = useCart()
@@ -30,7 +31,7 @@ function ToCartButton({product, isReversed}: {product: Product, isReversed: bool
         <>
             {quantity === 0 &&
                 <button className={styles.toCartButton} onClick={handleAddingToCart}>
-                    <img src="/src/assets/images/icons/cart-white.png" alt="Cart img"></img>
+                    <img src={cart} alt="Cart img"></img>
                     В корзину
                 </button>
             }
@@ -39,7 +40,7 @@ function ToCartButton({product, isReversed}: {product: Product, isReversed: bool
                     ? `${styles.inCartButtonWrapper} ${styles.reversed}`
                     : styles.inCartButtonWrapper}>
                     <button className={styles.inCartButton} onClick={() => navigate('/cart')}>
-                        <img src="/src/assets/images/icons/cart-white.png" alt="Cart img"></img>
+                        <img src={cart} alt="Cart img"></img>
                         {quantity} шт.
                     </button>
                     <div className={styles.quantity}>
