@@ -14,4 +14,4 @@ COPY src src
 
 RUN ./mvnw clean package -DskipTests -B
 
-CMD ["java", "-jar", "target/backend-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-Xmx350m", "-jar", "target/backend-0.0.1-SNAPSHOT.jar"]
