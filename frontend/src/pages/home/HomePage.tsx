@@ -4,6 +4,8 @@ import SideText from "./components/side info/SideText.tsx";
 import styles from "./Home.module.scss"
 import Advantages from "./components/advantages/Advantages.tsx";
 import Info from "./components/info/Info.tsx";
+import fire from "../../assets/images/icons/fire.png"
+import newPng from "../../assets/images/icons/new.png"
 
 function HomePage() {
 
@@ -15,7 +17,7 @@ function HomePage() {
                     <SideText
                         title="Хиты продаж"
                         text="Тысячи покупателей уже одобрили эти товары. Самые популярные, проверенные и надежные гаджеты!"
-                        image="src/assets/images/icons/fire.png"
+                        image={fire}
                     />
                     <Carousel label="is_bestseller"/>
                 </div>
@@ -23,7 +25,7 @@ function HomePage() {
                     <SideText
                         title="Новинки"
                         text="Их только произвели - они уже у нас! Все самое новое и свежее на рынке электроники"
-                        image="src/assets/images/icons/new.png"
+                        image={newPng}
                     />
                     <Carousel label="is_new"/>
                 </div>

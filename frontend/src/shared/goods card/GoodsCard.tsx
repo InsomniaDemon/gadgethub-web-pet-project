@@ -1,6 +1,9 @@
 import type {Product} from "../../dtos/Product.ts"
 import styles from "./GoodsCard.module.scss"
 import clsx from "clsx";
+import bestSeller from "../../assets/images/labels/bestseller.png"
+import newPng from "../../assets/images/labels/new.png"
+import star from "../../assets/images/icons/star.png"
 
 function GoodsCard({product, disableHover = false}: {product: Product, disableHover: boolean}) {
     const hasNewLabel = product.labels.includes("new")
@@ -11,8 +14,8 @@ function GoodsCard({product, disableHover = false}: {product: Product, disableHo
             <div className={styles.productImgContainer}>
                 <div className={styles.labels}>
                     <div className={styles.flex}>
-                        {hasNewLabel && <img src="src/assets/images/labels/new.png" alt="New label"/>}
-                        {hasBestsellerLabel && <img src="src/assets/images/labels/bestseller.png" alt="Bestseller label"/>}
+                        {hasNewLabel && <img src={newPng} alt="New label"/>}
+                        {hasBestsellerLabel && <img src={bestSeller} alt="Bestseller label"/>}
                     </div>
                 </div>
                 <img src={product.image} alt="product image" className={styles.productImg}/>
@@ -20,7 +23,7 @@ function GoodsCard({product, disableHover = false}: {product: Product, disableHo
             <p className={styles.cost}>{product.price} ₽</p>
             <p className={styles.title}>{product.title}</p>
             <div className={styles.stars}>
-                <img src="src/assets/images/icons/star.png" alt="star image"/>
+                <img src={star} alt="star image"/>
                 <span>{product.stars}</span>
             </div>
         </div>
