@@ -10,10 +10,10 @@ function LoginPage() {
     const navigate = useNavigate()
 
     useEffect(() => {
-            if (isLoggedIn) {
-                navigate("/")
-            }
-        },[])
+        if (isLoggedIn) {
+            navigate("/")
+        }
+    },[])
 
     return (
         <div className={styles.login}>

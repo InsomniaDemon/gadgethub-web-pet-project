@@ -45,23 +45,23 @@
       }
 
       .delete {
-         display: flex;
-         align-items: center;
-         gap: 1em;
-         border: none;
-         color: var(--pink);
-         background-color: transparent;
-         transition: 0.3s ease;
-         font-size: 16px;
+        display: flex;
+        align-items: center;
+        gap: 1em;
+        border: none;
+        color: var(--pink);
+        background-color: transparent;
+        transition: 0.3s ease;
+        font-size: 16px;
 
-         img {
-           width: 16px;
-         }
+        img {
+          width: 16px;
+        }
 
-         &:hover {
-           cursor: pointer;
-         }
-       }
+        &:hover {
+          cursor: pointer;
+        }
+      }
     }
   }
 
@@ -70,5 +70,6 @@
     margin-left: auto;
     font-weight: 500;
     font-size: 24px;
+    cursor: default;
   }
 }

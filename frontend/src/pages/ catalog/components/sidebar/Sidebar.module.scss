@@ -32,12 +32,23 @@
           }
         }
       }
+
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+      }
+
+      input[type="number"] {
+        -moz-appearance: textfield;
+        appearance: textfield;
+      }
     }
 
     p {
       margin: 0;
       font-weight: 500;
       font-size: 18px;
+      cursor: default;
     }
 
     .buttons {
@@ -46,6 +57,10 @@
 
       button {
         font-weight: 500;
+
+        &:hover {
+          cursor: pointer;
+        }
       }
 
       .show {

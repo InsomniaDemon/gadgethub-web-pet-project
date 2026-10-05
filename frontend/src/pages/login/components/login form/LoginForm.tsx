@@ -6,20 +6,41 @@ import {checkCredentials} from "../../api/Login.ts"
 import {useAuth} from "../../../../shared/contexts/AuthContext.tsx"
 import {ApiError} from "../../types.ts";
 
+type FormErrors = {
+    login?: string
+    password?: string
+}
+
 function LoginForm() {
     const { setIsLoggedIn, logIn } = useAuth()
     const navigate = useNavigate()
 
-    const [login, setLogin] = useState("")
-    const [password, setPassword] = useState("")
-
-    const [error, setError] = useState<string | null>(null)
+    const [errors, setErrors] = useState<FormErrors>({})
 
 
     const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        setError(null)
+        setErrors({})
+        const newErrors: FormErrors = {}
+
+        const formData = new FormData(e.currentTarget)
+        const login = formData.get("login") as string
+        const password = formData.get("password") as string
+
+
+        if (login.length === 0) {
+            newErrors.login = "Заполните обязательное поле"
+        }
+
+        if (password.length === 0) {
+            newErrors.password = "Заполните обязательное поле"
+        }
+
+        if (newErrors.login || newErrors.password) {
+            setErrors(newErrors)
+            return
+        }
 
         try {
             const clientId = await checkCredentials(login, password)
@@ -27,10 +48,13 @@ function LoginForm() {
             setIsLoggedIn(true)
             navigate("/")
         } catch (err) {
-            setError(
-                err instanceof ApiError
-                    ? err.message
-                    : 'Something went wrong. Please try again.'
+            setErrors(
+                {login: err instanceof ApiError
+                        ? err.message
+                        : 'Something went wrong. Please try again.',
+                    password: err instanceof ApiError
+                        ? err.message
+                        : 'Something went wrong. Please try again.'}
             );
         }
     }
@@ -42,24 +66,25 @@ function LoginForm() {
                     <p>Логин</p>
                     <input
                         type="text"
-                        value={login}
-                        onChange={(e) => setLogin(e.target.value)}
+                        name="login"
+                        placeholder="login"
+                        className={errors.login ? styles.error : ""}
                     />
                     <span>*</span>
+                    {errors.login && <p className={styles.errorText}>{errors.login}</p>}
                 </div>
                 <div className={styles.wrapper}>
                     <p>Пароль</p>
                     <input
                         type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        name="password"
+                        placeholder="password"
+                        className={errors.password ? styles.error : ""}
                     />
                     <span>*</span>
+                    {errors.password && <p className={styles.errorText}>{errors.password}</p>}
                 </div>
-
-                <button type="submit">Войти</button>
-
-                {error && <p className={styles.errorText}>{error}</p>}
+                <button>Войти</button>
             </form>
         </div>
     )

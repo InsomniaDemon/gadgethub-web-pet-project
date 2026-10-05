@@ -33,6 +33,33 @@
         border-radius: 10px;
         width: 278px;
         height: 48px;
+
+        &:hover {
+          outline: 1px solid var(--blue-border);
+          transition: none;
+        }
+
+        &:active {
+          background-color: var(--login-active-bg);
+          outline: 1px solid var(--blue-border);
+        }
+
+        &:focus {
+          outline: 3px solid var(--blue-border);
+          transition: none;
+        }
+
+        &:not(:placeholder-shown) {
+          background-color: var(--login-active-bg);
+        }
+
+        &:placeholder-shown {
+          color: var(--specs-line);
+        }
+
+        &.error {
+          outline: 1px solid var(--pink);
+        }
       }
     }
 
@@ -47,6 +74,7 @@
 
       &:hover {
         background-color: var(--blue-button-hover);
+        cursor: pointer;
       }
 
       &:focus {
@@ -60,8 +88,8 @@
 
     .errorText {
       position: absolute;
-      bottom: 0;
-      color: red;
+      bottom: -24px;
+      color: var(--pink);
     }
   }
 }

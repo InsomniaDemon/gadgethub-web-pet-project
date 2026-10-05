@@ -23,6 +23,11 @@
 
     &:hover {
       background: var(--blue-button-hover);
+      cursor: pointer;
+    }
+
+    &:active {
+      cursor: grabbing;
     }
   }
 

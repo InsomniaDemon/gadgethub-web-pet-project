@@ -19,6 +19,7 @@
     &:hover {
       background-color: var(--pale-blue);
       color: white;
+      cursor: pointer;
     }
 
     &.active {
@@ -30,5 +31,6 @@
   span {
     margin-top: 4px;
     color: var(--light-blue);
+    cursor: default;
   }
 }

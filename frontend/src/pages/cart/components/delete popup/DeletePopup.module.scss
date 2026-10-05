@@ -17,10 +17,10 @@
   }
 
   .card {
-    padding: 105px 60px;
+    padding: 70px 60px;
     background-color: white;
     width: 436px;
-    height: 90px;
+    height: 160px;
     border-radius: 30px;
     position: fixed;
     display: flex;
@@ -46,6 +46,7 @@
 
       &:hover {
         background-color: var(--arrow-hover-bg);
+        cursor: pointer;
       }
     }
 
@@ -56,6 +57,7 @@
 
     .buttons {
       margin-left: auto;
+      margin-top: auto;
       display: flex;
       gap: 8px;
 
@@ -70,6 +72,7 @@
         &:hover {
           color: var(--pink-hover);
           text-decoration: underline;
+          cursor: pointer;
         }
       }
 
@@ -85,6 +88,7 @@
 
         &:hover {
           background-color: var(--blue-button-hover);
+          cursor: pointer;
         }
 
         &:focus {
