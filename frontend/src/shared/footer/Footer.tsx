@@ -1,4 +1,7 @@
 import styles from "./Footer.module.scss"
+import vk from "../../assets/images/social icons/vk.png"
+import tg from "../../assets/images/social icons/telegram.png"
+import wu from "../../assets/images/social icons/whatsapp.png"
 
 function Footer() {
     return (
@@ -15,13 +18,13 @@ function Footer() {
                         </a>
                         <div className={styles.socials}>
                             <a href="https://www.youtube.com/watch?v=eTQvtx1T3Tg">
-                                <img src="src/assets/images/social icons/vk.png" alt="VK icon"/>
+                                <img src={vk} alt="VK icon"/>
                             </a>
                             <a href="https://www.youtube.com/watch?v=eTQvtx1T3Tg">
-                                <img src="src/assets/images/social icons/telegram.png" alt="Telegram icon"/>
+                                <img src={tg} alt="Telegram icon"/>
                             </a>
                             <a href="https://www.youtube.com/watch?v=eTQvtx1T3Tg">
-                                <img src="src/assets/images/social icons/whatsapp.png" alt="Whatsapp icon"/>
+                                <img src={wu} alt="Whatsapp icon"/>
                             </a>
                         </div>
                     </div>
