@@ -2,6 +2,10 @@
   margin: 2em 0 0 2em;
   font-size: 32px;
   font-weight: 500;
+
+  &:hover {
+    cursor: default;
+  }
 }
 
 input {
