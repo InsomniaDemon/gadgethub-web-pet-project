@@ -1,13 +1,15 @@
 import styles from "./OrderPopup.module.scss"
+import cross from "../../../../assets/images/icons/cross.png"
+import smile from "../../../../assets/images/icons/smile.png"
 
 function OrderPopup({orderId, close}: {orderId: number, close: () => void}) {
     return (
         <div className={styles.popup}>
             <div className={styles.bg}/>
             <div className={styles.card}>
-                <img src="src/assets/images/icons/smile.png" alt="cross image" className={styles.smile}/>
+                <img src={smile} alt="cross image" className={styles.smile}/>
                 <button className={styles.cross} onClick={close}>
-                    <img src="src/assets/images/icons/cross.png" alt="cross image"/>
+                    <img src={cross} alt="cross image"/>
                 </button>
                 <p>Спасибо за заказ!</p>
                 <span>Номер заказа {orderId}.</span>

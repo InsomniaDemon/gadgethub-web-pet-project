@@ -1,4 +1,5 @@
 import styles from "./DeletePopup.module.scss"
+import cross from "../../../../assets/images/icons/cross.png"
 
 function DeletePopup({text, onDelete, close}: {text: string, onDelete: () => void, close: () => void}) {
     const handleDelete = () => {
@@ -11,7 +12,7 @@ function DeletePopup({text, onDelete, close}: {text: string, onDelete: () => voi
             <div className={styles.bg}/>
             <div className={styles.card}>
                 <button className={styles.cross} onClick={close}>
-                    <img src="src/assets/images/icons/cross.png" alt="cross image"/>
+                    <img src={cross}  alt="cross image"/>
                 </button>
                 <p>{text}</p>
                 <div className={styles.buttons}>

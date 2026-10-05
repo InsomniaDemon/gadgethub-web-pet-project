@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import styles from "./Select.module.scss";
+import dropDownArrow from "../../../../../../assets/images/icons/drop-down-arrow.png"
 
 function Select({ options, value, placeholder, onChange, error }: {options: string[], value: string | null, placeholder: string, onChange: (value: string) => void, error: string | undefined}) {
     const [isOpen, setIsOpen] = useState(false)
@@ -27,7 +28,7 @@ function Select({ options, value, placeholder, onChange, error }: {options: stri
                 <span className={value ? styles.value : styles.placeholder}>
                     {value ?? placeholder}
                 </span>
-                <img src="src/assets/images/icons/drop-down-arrow.png" alt="Dropdown arrow img" className={`${styles.arrow} ${isOpen ? styles.open : ""}`}/>
+                <img src={dropDownArrow} alt="Dropdown arrow img" className={`${styles.arrow} ${isOpen ? styles.open : ""}`}/>
             </button>
 
             {isOpen && (

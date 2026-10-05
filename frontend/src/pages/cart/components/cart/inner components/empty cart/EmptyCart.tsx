@@ -1,12 +1,13 @@
 import styles from "./EmptyCart.module.scss";
 import {useNavigate} from "react-router-dom";
+import emptyCart from "../../../../../../assets/images/icons/empty-cart.png"
 
 function EmptyCart() {
     const navigate = useNavigate()
 
     return (
         <div className={styles.emptyCart}>
-            <img src="src/assets/images/icons/empty-cart.png" alt="Empty cart img"/>
+            <img src={emptyCart} alt="Empty cart img"/>
             <p>Пока пусто</p>
             <span>Ознакомьтесь с новинками и хитами на главной или найдите нужное в каталоге</span>
             <div className={styles.buttons}>

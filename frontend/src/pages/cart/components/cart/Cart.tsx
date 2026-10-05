@@ -6,6 +6,7 @@ import {useState} from "react";
 import Order from "./inner components/order/Order.tsx";
 import DeletePopup from "../delete popup/DeletePopup.tsx";
 import OrderPopup from "../order popup/OrderPopup.tsx";
+import pinkCross from "../../../../assets/images/icons/pink-cross.png"
 
 function Cart() {
     const { getItems, deleteProducts, clearCart } = useCart()
@@ -100,12 +101,12 @@ function Cart() {
                             </label>
                             {(selectedIds.size > 0 && selectedIds.size < items.length) &&
                                 <button onClick={handleSelectedDelection} className={styles.delete}>
-                                    <img src="src/assets/images/icons/pink-cross.png" alt="Cross img" className={styles.crossImg}/>
+                                    <img src={pinkCross} alt="Cross img" className={styles.crossImg}/>
                                     <span>Удалить выделенные</span>
                                 </button>}
                             {selectedIds.size === items.length &&
                                 <button onClick={handleDeleteAll} className={styles.delete}>
-                                    <img src="src/assets/images/icons/pink-cross.png" alt="Cross img" className={styles.crossImg}/>
+                                    <img src={pinkCross} alt="Cross img" className={styles.crossImg}/>
                                     <span>Удалить все</span>
                                 </button>}
                         </div>
