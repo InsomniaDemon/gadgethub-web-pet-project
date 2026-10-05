@@ -2,7 +2,7 @@ import type {NewOrder} from "../../../dtos/NewOrder.ts";
 import type {OrderSummary} from "../../../dtos/OrderSummary.ts";
 import {API_URL} from "../../../config.ts";
 
-const BASE_URL = `${API_URL}`;
+const BASE_URL = `${API_URL}/orders`;
 
 export async function postNewOrder(newOrder: NewOrder): Promise<number> {
     const path = `/new`

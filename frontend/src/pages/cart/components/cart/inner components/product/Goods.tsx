@@ -3,6 +3,7 @@ import styles from "./Goods.module.scss"
 import {useCart} from "../../../../../../shared/contexts/CartContext.tsx";
 import DeletePopup from "../../../delete popup/DeletePopup.tsx";
 import {useState} from "react";
+import pinkCross from "../../../../../../assets/images/icons/pink-cross.png"
 
 function Goods({product, quantity, checked, onToggle, onDelete}: {product: Product, quantity: number, checked: boolean, onToggle: () => void, onDelete: () => void}) {
     const { deleteProduct, changeProductQuantity } = useCart()
@@ -35,7 +36,7 @@ function Goods({product, quantity, checked, onToggle, onDelete}: {product: Produ
                         </div>
                         <span className={styles.price}>{product.price * quantity} ₽</span>
                         <button className={styles.delete} onClick={() => setIsOpen(true)}>
-                            <img src="src/assets/images/icons/pink-cross.png" alt="Cross img"/>
+                            <img src={pinkCross} alt="Cross img"/>
                             <span>Удалить</span>
                         </button>
                     </div>
