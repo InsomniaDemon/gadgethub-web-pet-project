@@ -4,9 +4,6 @@ import {useEffect, useState} from "react";
 import Cart from "./components/cart/Cart.tsx";
 import History from "./components/history/History.tsx";
 import styles from "./CartPage.module.scss"
-import DeletePopup from "./components/delete popup/DeletePopup.tsx";
-import order from "./components/cart/inner components/order/Order.tsx";
-import OrderPopup from "./components/order popup/OrderPopup.tsx";
 
 
 function CartPage() {

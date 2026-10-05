@@ -12,7 +12,7 @@ function Cart() {
 
     const [deletePopupText, setDeletePopupText] = useState<string | undefined>(undefined)
     const [orderId, setOrderId] = useState<number | undefined>(undefined)
-    const [deleteFunc, setDeleteFunc] = useState<() => void | undefined>(undefined)
+    const [deleteFunc, setDeleteFunc] = useState<() => void>(() => {})
 
     const items = getItems()
 
